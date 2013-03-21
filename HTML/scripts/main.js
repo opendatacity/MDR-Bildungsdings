@@ -17,6 +17,22 @@ function tooltipOut() {
 		.animate({opacity:0}, 200)
 		.promise().done(function () {	$('#tooltip').css({display:'none'})	});
 }
+function initQuellenPopup() {
+	$('#tabs').on('click','.quellen h1',function() {
+		$(this).parent().toggleClass('open',200);
+	});
+}
+
+function tooltip4Text(ttId){
+	var ttText = $(ttId).attr('title');
+	$(ttId).hover(function(e){
+		$(ttId).attr('title','');
+		tooltipIn('<p class="ttText">'+ttText+'</p>');
+	},function(){
+		tooltipOut();
+		$(ttId).attr('title',ttText);
+	});
+}
 
 
 // function to format a number with separators. returns formatted number.
@@ -26,12 +42,12 @@ function tooltipOut() {
 function formatNumber(num, precision, decpoint, thousandSep) {
 	if (decpoint === undefined) decpoint = ',';
 	if (thousandSep === undefined) thousandSep = '.';
-
+	if (num==0) return "0";
 	var parts = num.toFixed(precision).split('.');
 	var s0 = parts[0];
 	var s = '';
 	while (s0.length > 3) {
-		s += thousandSep + s0.substr(s0.length-3);
+		s = thousandSep + s0.substr(s0.length-3) + s;
 		s0 = s0.substr(0, s0.length-3);
 	}
 	s = s0 + s;
@@ -51,7 +67,7 @@ function loadTabContent() { // Put content of active tab in DOM on tab change
 		case 'studienanfaenger': loadStudienanfaengerTab(); break;
 		case 'hochschulen': loadHochschulenTab(); break;
 		case 'wanderung': loadWanderungTab(); break;
-		case 'finanzen': loadFinanzenTab(); break;
+		case 'arbeitsmarkt': loadArbeitsmarktTab(); break;
 		default:console.log("Could not find tab");
 	}
 } // loadTabContent
@@ -70,8 +86,8 @@ $(function() {
 		case 'abiturienten': startTab = 1; break;
 		case 'studienanfaenger': startTab = 2; break;
 		case 'hochschulen':  startTab = 3; break;
-		case 'wanderung':    startTab = 4; break;
-		case 'finanzen':     startTab = 5; break;
+		case 'arbeitsmarkt':     startTab = 4; break;
+		case 'wanderung':    startTab = 5; break;
 		default:startTab='schueler';
 	}
 	var showNavi = window.location.hash.substr(window.location.hash.length-1,1);
@@ -90,14 +106,24 @@ $(function() {
 	if (!showNavi) $('#tabs ul').hide();
 
 
-	$('#sMap,#hMap,#aMap,#wMap,#fMap,#tMap').mousemove(function (e) {
+	$('#sMap,#hMap,#aMap,#aMdrMap,#wMap,#fMap,#tMap').mousemove(function (e) {
 		$('#tooltip').css({
 			left:(e.pageX+10)+"px",
 			top: (e.pageY+10)+"px"
 		});
 	});
+
+	$('#ttIntMatheOlympiade,#ttJugendForscht,#ttDoppelterAbiJahrgang,#ttBevoelkerungszahl,#hTxtAll,#fTxtAll,#tt-wanderung-1').mousemove(function (e) {
+		$('#tooltip').css({
+			left:(e.pageX-330)+"px",
+			top: (e.pageY+10)+"px"
+		});
+	});
+
 	
 	initDotHover(['#hMap','#fMap']);
 
 	loadTabContent();
+
+	initQuellenPopup();
 });
