@@ -1,23 +1,4 @@
 var database = {
-	/*schueler:[
-		{regionId:'000000000000', mathe:195, jufo:119, schueler:9407410, matheRel:20.7283414252108, jufoRel:12.6496032287184},
-		{regionId:'080000000000', mathe:33, jufo:16, schueler:1292602, matheRel:25.5299055414594, jufoRel:12.3781360201015},
-		{regionId:'090000000000', mathe:57, jufo:23, schueler:1447858, matheRel:39.3684917196195, jufoRel:15.8855317465131},
-		{regionId:'110000000000', mathe:18, jufo:8, schueler:351909, matheRel:51.1495473265062, jufoRel:22.7331321451138},
-		{regionId:'120000000000', mathe:1, jufo:2, schueler:255887, matheRel:3.90797916976048, jufoRel:7.81595833952097},
-		{regionId:'040000000000', mathe:4, jufo:4, schueler:73391, matheRel:54.5023256390088, jufoRel:54.5023256390088},
-		{regionId:'020000000000', mathe:4, jufo:3, schueler:180115, matheRel:22.2080001292102, jufoRel:16.6560000969076},
-		{regionId:'060000000000', mathe:12, jufo:11, schueler:693495, matheRel:17.3036552923099, jufoRel:15.8616840179507},
-		{regionId:'130000000000', mathe:1, jufo:2, schueler:165030, matheRel:6.05951434645108, jufoRel:12.1190286929022},
-		{regionId:'030000000000', mathe:7, jufo:12, schueler:971548, matheRel:7.20499791055061, jufoRel:12.3514249895153},
-		{regionId:'050000000000', mathe:22, jufo:15, schueler:2269360, matheRel:9.69436316847041, jufoRel:6.60979306941164},
-		{regionId:'070000000000', mathe:6, jufo:6, schueler:479638, matheRel:12.5094365692908, jufoRel:12.5094365692908},
-		{regionId:'100000000000', mathe:1, jufo:4, schueler:112511, matheRel:8.88801265653002, jufoRel:35.5520506261201},
-		{regionId:'140000000000', mathe:12, jufo:5, schueler:363298, matheRel:33.0307681605415, jufoRel:13.7628200668923},
-		{regionId:'150000000000', mathe:2, jufo:4, schueler:216631, matheRel:9.23230605463863, jufoRel:18.4646121092773},
-		{regionId:'010000000000', mathe:5, jufo:1, schueler:334394, matheRel:14.9524173301235, jufoRel:2.99048346602471},
-		{regionId:'160000000000', mathe:10, jufo:3, schueler:199743, matheRel:50.0643326674777, jufoRel:15.0192998002433}
-	],*/
 	schueler:[
 		{regionId:'000000000000', mathe:195, jufo:119, schueler:9407410, matheRel:20.7283414252108, jufoRel:12.6496032287184,matoly:1157},
 		{regionId:'080000000000', mathe:33, jufo:16, schueler:1292602, matheRel:25.5299055414594, jufoRel:12.3781360201015,matoly:71},//Baden-Württemberg
@@ -784,114 +765,73 @@ var database = {
 // betr:Anzahl Betriebe mit Kurzarbeit
 // kurz:Kurzarbeiter
 // ausg:Grundmittel
-		{land:'Sachsen',jahr:2000,dritt:152052000,ausg:1259745000,stud:81524,absolv:8239,bip:75700000000,ew:1972536,svpb:1500646,fue:6926,al:387868
-,e400:155420,e400Frau:94529,betr:676,kurz:7884,einwohner:4425581,akoffen:209146,akbesetzt:11.9102302741908},
-	{land:'Sachsen',jahr:2001,dritt:167008000,ausg:1277857000,stud:87156,absolv:8715,bip:78100000000,ew:1939987,svpb:1452609,fue:7329,al:399420
-,e400:169584,e400Frau:101489,betr:723,kurz:9517,einwohner:4384192,akoffen:212971,akbesetzt:12.1250101568213},
-		{land:'Sachsen',jahr:2002,dritt:177357000,ausg:1355740000,stud:93133,absolv:9325,bip:81300000000,ew:1915375,svpb:1415736,fue:7697,al:405349
-,e400:174831,e400Frau:103513,betr:1995,kurz:19623,einwohner:4349059,akoffen:150619,akbesetzt:12.4679592044947},
-		{land:'Sachsen',jahr:2003,dritt:180915000,ausg:1345326000,stud:99752,absolv:9874,bip:83200000000,ew:1908169,svpb:1387438,fue:7882,al:403480
-,e400:187351,e400Frau:110202,betr:1093,kurz:10640,einwohner:4321437,akoffen:114603,akbesetzt:12.6051504453325},
-		{land:'Sachsen',jahr:2004,dritt:197534000,ausg:1357720000,stud:103272,absolv:10427,bip:85600000000,ew:1912294,svpb:1352648,fue:7813,al:396328
-,e400:193547,e400Frau:112888,betr:969,kurz:9484,einwohner:4296284,akoffen:76969,akbesetzt:12.7267293467404},
-		{land:'Sachsen',jahr:2005,dritt:193849000,ausg:1400350000,stud:104398,absolv:11130,bip:85800000000,ew:1895714,svpb:1326747,fue:7865,al:402270
-,e400:190850,e400Frau:112192,betr:895,kurz:8105,einwohner:4273754,akoffen:78599,akbesetzt:12.9894013090734},
-		{land:'Sachsen',jahr:2006,dritt:217281975,ausg:1436535983,stud:103262,absolv:12139,bip:89700000000,ew:1912131,svpb:1361796,fue:8257,al:371909
-,e400:191068,e400Frau:113919,betr:552,kurz:4106,einwohner:4249774,akoffen:92308,akbesetzt:13.0175253823459},
-		{land:'Sachsen',jahr:2007,dritt:245241151,ausg:1497234157,stud:104091,absolv:13880,bip:93700000000,ew:1941365,svpb:1386744,fue:8716,al:321221
-,e400:186818,e400Frau:111813,betr:697,kurz:4878,einwohner:4220200,akoffen:98010,akbesetzt:12.9531920594999},
-		{land:'Sachsen',jahr:2008,dritt:305008544,ausg:1537797392,stud:103867,absolv:14581,bip:94700000000,ew:1953262,svpb:1399154,fue:9488,al:278725
-,e400:181257,e400Frau:107556,betr:841,kurz:6719,einwohner:4192801,akoffen:95993,akbesetzt:13.0227922814658},
-		{land:'Sachsen',jahr:2009,dritt:341591493,ausg:1612303552,stud:105898,absolv:15926,bip:92800000000,ew:1936723,svpb:1394608,fue:10095,al:277727
-,e400:185403,e400Frau:109478,betr:4199,kurz:54435,einwohner:4168732,akoffen:87804,akbesetzt:13.3143797609311},
-		{land:'Sachsen',jahr:2010,dritt:421147334,ausg:1756288490,stud:106258,absolv:17524,bip:95000000000,ew:1950879,svpb:1418792,fue:10509,al:253142
-,e400:178583,e400Frau:104232,betr:4275,kurz:29785,einwohner:4149477,akoffen:103746,akbesetzt:13.2838472860107},
-		{land:'Sachsen-Anhalt',jahr:2000,dritt:58438000,ausg:801309000,stud:37972,absolv:3762,bip:43800000000,ew:1071114,svpb:825042,fue:2990,al:272867
-,e400:71776,e400Frau:43933,betr:309,kurz:4295,einwohner:2615375,akoffen:126661,akbesetzt:8.10661672491347},
-		{land:'Sachsen-Anhalt',jahr:2001,dritt:66437000,ausg:845252000,stud:40608,absolv:3913,bip:44000000000,ew:1039427,svpb:805653,fue:3053,al:264557
-,e400:78237,e400Frau:47683,betr:291,kurz:4224,einwohner:2580626,akoffen:123937,akbesetzt:8.17260352599469},
-		{land:'Sachsen-Anhalt',jahr:2002,dritt:70999000,ausg:847982000,stud:43026,absolv:4448,bip:45700000000,ew:1020385,svpb:777152,fue:3186,al:260465
-,e400:80321,e400Frau:48602,betr:442,kurz:5770,einwohner:2548911,akoffen:82979,akbesetzt:8.37340494579972},
-		{land:'Sachsen-Anhalt',jahr:2003,dritt:80892000,ausg:864428000,stud:48351,absolv:4537,bip:46000000000,ew:1006498,svpb:757986,fue:3175,al:268264
-,e400:89838,e400Frau:53374,betr:337,kurz:4612,einwohner:2522941,akoffen:67259,akbesetzt:8.49402887474462},
-		{land:'Sachsen-Anhalt',jahr:2004,dritt:68137000,ausg:885212000,stud:52058,absolv:4914,bip:47200000000,ew:1005603,svpb:729871,fue:3208,al:262763
-,e400:94083,e400Frau:54928,betr:319,kurz:3739,einwohner:2494437,akoffen:45323,akbesetzt:8.45125026829792},
-		{land:'Sachsen-Anhalt',jahr:2005,dritt:74080000,ausg:881011000,stud:51408,absolv:5536,bip:47400000000,ew:989520,svpb:723619,fue:3136,al:258527
-,e400:90038,e400Frau:53243,betr:334,kurz:3481,einwohner:2469716,akoffen:50940,akbesetzt:8.69829092353459},
-		{land:'Sachsen-Anhalt',jahr:2006,dritt:77959262,ausg:869322738,stud:51152,absolv:5712,bip:49300000000,ew:995055,svpb:733037,fue:3225,al:231932
-,e400:91727,e400Frau:55163,betr:174,kurz:1740,einwohner:2441787,akoffen:58561,akbesetzt:8.70980960830278},
-		{land:'Sachsen-Anhalt',jahr:2007,dritt:74395991,ausg:885930712,stud:51095,absolv:5921,bip:51600000000,ew:1006751,svpb:738883,fue:3575,al:201168
-,e400:93052,e400Frau:56828,betr:314,kurz:2329,einwohner:2412472,akoffen:49824,akbesetzt:8.77207807518846},
-		{land:'Sachsen-Anhalt',jahr:2008,dritt:88831845,ausg:929803386,stud:51725,absolv:7205,bip:52600000000,ew:1013175,svpb:748430,fue:3702,al:174515
-,e400:90360,e400Frau:55236,betr:368,kurz:2878,einwohner:2381872,akoffen:47471,akbesetzt:8.79043770717898},
-		{land:'Sachsen-Anhalt',jahr:2009,dritt:95051818,ausg:955241728,stud:52548,absolv:8335,bip:50400000000,ew:1008484,svpb:744890,fue:3878,al:167664
-,e400:91392,e400Frau:54804,betr:1686,kurz:19473,einwohner:2356219,akoffen:47837,akbesetzt:9.03003227610557},
-		{land:'Sachsen-Anhalt',jahr:2010,dritt:108582417,ausg:1016753740,stud:53643,absolv:8280,bip:52200000000,ew:1014183,svpb:751618,fue:3929,al:151280
-,e400:89713,e400Frau:53789,betr:1796,kurz:12746,einwohner:2335006,akoffen:56011,akbesetzt:9.07887043419988},
-		{land:'Thüringen',jahr:2000,dritt:48266000,ausg:577622000,stud:36719,absolv:3348,bip:40600000000,ew:1063635,svpb:809950,fue:3135,al:193663
-,e400:77485,e400Frau:47578,betr:403,kurz:3875,einwohner:2431255,akoffen:129244,akbesetzt:10.4122716623081},
-		{land:'Thüringen',jahr:2001,dritt:60809000,ausg:612070000,stud:42250,absolv:3848,bip:41700000000,ew:1049083,svpb:785917,fue:3331,al:194131
-,e400:82127,e400Frau:49558,betr:466,kurz:5464,einwohner:2411387,akoffen:122910,akbesetzt:10.4630825022209},
-		{land:'Thüringen',jahr:2002,dritt:63124000,ausg:648007000,stud:45577,absolv:4113,bip:42400000000,ew:1027704,svpb:756323,fue:3382,al:201157
-,e400:83838,e400Frau:50342,betr:568,kurz:6933,einwohner:2392040,akoffen:83940,akbesetzt:10.4381376425777},
-		{land:'Thüringen',jahr:2003,dritt:66978000,ausg:635201000,stud:48297,absolv:4750,bip:43400000000,ew:1008622,svpb:734165,fue:3465,al:210664
-,e400:91737,e400Frau:54251,betr:572,kurz:6523,einwohner:2373157,akoffen:65204,akbesetzt:10.3080490407274},
-		{land:'Thüringen',jahr:2004,dritt:68133000,ausg:648663000,stud:47785,absolv:5439,bip:44600000000,ew:1010673,svpb:716622,fue:3370,al:207430
-,e400:97889,e400Frau:57563,betr:506,kurz:5192,einwohner:2355280,akoffen:50302,akbesetzt:10.1115071297066},
-		{land:'Thüringen',jahr:2005,dritt:71407000,ausg:668766000,stud:48201,absolv:6343,bip:45000000000,ew:1005137,svpb:703117,fue:3345,al:209941
-,e400:97552,e400Frau:58254,betr:453,kurz:4539,einwohner:2334575,akoffen:50340,akbesetzt:10.2615691324139},
-		{land:'Thüringen',jahr:2006,dritt:85396853,ausg:677830716,stud:48832,absolv:6736,bip:46800000000,ew:1005868,svpb:718118,fue:3603,al:188453
-,e400:97168,e400Frau:58982,betr:264,kurz:2413,einwohner:2311140,akoffen:52041,akbesetzt:10.1793578000945},
-		{land:'Thüringen',jahr:2007,dritt:95478986,ausg:691171774,stud:49347,absolv:6926,bip:49100000000,ew:1020811,svpb:728107,fue:3838,al:158488
-,e400:95958,e400Frau:58558,betr:429,kurz:3390,einwohner:2289219,akoffen:54839,akbesetzt:10.1005718630173},
-		{land:'Thüringen',jahr:2008,dritt:104264134,ausg:744571300,stud:49871,absolv:7858,bip:49400000000,ew:1026963,svpb:731844,fue:4045,al:134882
-,e400:92618,e400Frau:56473,betr:534,kurz:5287,einwohner:2267763,akoffen:55249,akbesetzt:10.0804273534433},
-		{land:'Thüringen',jahr:2009,dritt:121485837,ausg:790014749,stud:51584,absolv:8711,bip:48100000000,ew:1015111,svpb:724251,fue:4195,al:136016
-,e400:93560,e400Frau:56289,betr:2408,kurz:35582,einwohner:2249882,akoffen:52701,akbesetzt:10.3784340203219},
-		{land:'Thüringen',jahr:2010,dritt:121650942,ausg:852609548,stud:52566,absolv:10153,bip:49900000000,ew:1023107,svpb:741351,fue:4446,al:117056
-,e400:88928,e400Frau:52748,betr:2375,kurz:18358,einwohner:2235025,akoffen:68543,akbesetzt:10.3495699986857},
+		{land:'Sachsen',        jahr:2000, dritt: 152167000, grund: 1011927000, stud:  81524, absolv:  8239, bip:  75700000000, ew: 1972536, svpb: 1500646, fue:  6926, al: 387868, alquote:17.0, e400: 155420, e400Frau:  94529, betr:  676, kurz:   7884, einwohner: 4425581, akoffen: 209146, akbesetzt:11.9102302741908},
+		{land:'Sachsen',        jahr:2001, dritt: 167200000, grund: 1011015300, stud:  87156, absolv:  8715, bip:  78100000000, ew: 1939987, svpb: 1452609, fue:  7329, al: 399420, alquote:17.5, e400: 169584, e400Frau: 101489, betr:  723, kurz:   9517, einwohner: 4384192, akoffen: 212971, akbesetzt:12.1250101568213},
+		{land:'Sachsen',        jahr:2002, dritt: 177674000, grund: 1001031000, stud:  93133, absolv:  9325, bip:  81300000000, ew: 1915375, svpb: 1415736, fue:  7697, al: 405349, alquote:17.8, e400: 174831, e400Frau: 103513, betr: 1995, kurz:  19623, einwohner: 4349059, akoffen: 150619, akbesetzt:12.4679592044947},
+		{land:'Sachsen',        jahr:2003, dritt: 181259000, grund: 1045048000, stud:  99752, absolv:  9874, bip:  83200000000, ew: 1908169, svpb: 1387438, fue:  7882, al: 403480, alquote:17.9, e400: 187351, e400Frau: 110202, betr: 1093, kurz:  10640, einwohner: 4321437, akoffen: 114603, akbesetzt:12.6051504453325},
+		{land:'Sachsen',        jahr:2004, dritt: 197728000, grund: 1029819000, stud: 103272, absolv: 10427, bip:  85600000000, ew: 1912294, svpb: 1352648, fue:  7813, al: 396328, alquote:17.8, e400: 193547, e400Frau: 112888, betr:  969, kurz:   9484, einwohner: 4296284, akoffen:  76969, akbesetzt:12.7267293467404},
+		{land:'Sachsen',        jahr:2005, dritt: 194295000, grund: 1246185000, stud: 104398, absolv: 11130, bip:  85800000000, ew: 1895714, svpb: 1326747, fue:  7865, al: 402270, alquote:18.3, e400: 190850, e400Frau: 112192, betr:  895, kurz:   8105, einwohner: 4273754, akoffen:  78599, akbesetzt:12.9894013090734},
+		{land:'Sachsen',        jahr:2006, dritt: 218199750, grund:  974673140, stud: 103262, absolv: 12139, bip:  89700000000, ew: 1912131, svpb: 1361796, fue:  8257, al: 371909, alquote:17.0, e400: 191068, e400Frau: 113919, betr:  552, kurz:   4106, einwohner: 4249774, akoffen:  92308, akbesetzt:13.0175253823459},
+		{land:'Sachsen',        jahr:2007, dritt: 245870300, grund: 1027783190, stud: 104091, absolv: 13880, bip:  93700000000, ew: 1941365, svpb: 1386744, fue:  8716, al: 321221, alquote:14.7, e400: 186818, e400Frau: 111813, betr:  697, kurz:   4878, einwohner: 4220200, akoffen:  98010, akbesetzt:12.9531920594999},
+		{land:'Sachsen',        jahr:2008, dritt: 306260170, grund: 1052805230, stud: 103867, absolv: 14581, bip:  94700000000, ew: 1953262, svpb: 1399154, fue:  9488, al: 278725, alquote:12.8, e400: 181257, e400Frau: 107556, betr:  841, kurz:   6719, einwohner: 4192801, akoffen:  95993, akbesetzt:13.0227922814658},
+		{land:'Sachsen',        jahr:2009, dritt: 343418960, grund: 1078440530, stud: 105898, absolv: 15926, bip:  92800000000, ew: 1936723, svpb: 1394608, fue: 10095, al: 277727, alquote:12.9, e400: 185403, e400Frau: 109478, betr: 4199, kurz:  54435, einwohner: 4168732, akoffen:  87804, akbesetzt:13.3143797609311},
+		{land:'Sachsen',        jahr:2010, dritt: 423717260, grund: 1038708350, stud: 106258, absolv: 17524, bip:  95000000000, ew: 1950879, svpb: 1418792, fue: 10509, al: 253142, alquote:11.8, e400: 178583, e400Frau: 104232, betr: 4275, kurz:  29785, einwohner: 4149477, akoffen: 103746, akbesetzt:13.2838472860107},
+		
+		{land:'Sachsen-Anhalt', jahr:2000, dritt:  58440000, grund:  559272000, stud:  37972, absolv:  3762, bip:  43800000000, ew: 1071114, svpb:  825042, fue:  2990, al: 272867, alquote:20.2, e400:  71776, e400Frau:  43933, betr:  309, kurz:   4295, einwohner: 2615375, akoffen: 126661, akbesetzt:8.10661672491347},
+		{land:'Sachsen-Anhalt', jahr:2001, dritt:  66480000, grund:  591932000, stud:  40608, absolv:  3913, bip:  44000000000, ew: 1039427, svpb:  805653, fue:  3053, al: 264557, alquote:19.7, e400:  78237, e400Frau:  47683, betr:  291, kurz:   4224, einwohner: 2580626, akoffen: 123937, akbesetzt:8.17260352599469},
+		{land:'Sachsen-Anhalt', jahr:2002, dritt:  71023000, grund:  639065000, stud:  43026, absolv:  4448, bip:  45700000000, ew: 1020385, svpb:  777152, fue:  3186, al: 260465, alquote:19.6, e400:  80321, e400Frau:  48602, betr:  442, kurz:   5770, einwohner: 2548911, akoffen:  82979, akbesetzt:8.37340494579972},
+		{land:'Sachsen-Anhalt', jahr:2003, dritt:  80904000, grund:  540689000, stud:  48351, absolv:  4537, bip:  46000000000, ew: 1006498, svpb:  757986, fue:  3175, al: 268264, alquote:20.5, e400:  89838, e400Frau:  53374, betr:  337, kurz:   4612, einwohner: 2522941, akoffen:  67259, akbesetzt:8.49402887474462},
+		{land:'Sachsen-Anhalt', jahr:2004, dritt:  68137000, grund:  503376000, stud:  52058, absolv:  4914, bip:  47200000000, ew: 1005603, svpb:  729871, fue:  3208, al: 262763, alquote:20.3, e400:  94083, e400Frau:  54928, betr:  319, kurz:   3739, einwohner: 2494437, akoffen:  45323, akbesetzt:8.45125026829792},
+		{land:'Sachsen-Anhalt', jahr:2005, dritt:  74080000, grund:  451338000, stud:  51408, absolv:  5536, bip:  47400000000, ew:  989520, svpb:  723619, fue:  3136, al: 258527, alquote:20.2, e400:  90038, e400Frau:  53243, betr:  334, kurz:   3481, einwohner: 2469716, akoffen:  50940, akbesetzt:8.69829092353459},
+		{land:'Sachsen-Anhalt', jahr:2006, dritt:  77959260, grund:  432880270, stud:  51152, absolv:  5712, bip:  49300000000, ew:  995055, svpb:  733037, fue:  3225, al: 231932, alquote:18.3, e400:  91727, e400Frau:  55163, betr:  174, kurz:   1740, einwohner: 2441787, akoffen:  58561, akbesetzt:8.70980960830278},
+		{land:'Sachsen-Anhalt', jahr:2007, dritt:  74395990, grund:  442061870, stud:  51095, absolv:  5921, bip:  51600000000, ew: 1006751, svpb:  738883, fue:  3575, al: 201168, alquote:15.9, e400:  93052, e400Frau:  56828, betr:  314, kurz:   2329, einwohner: 2412472, akoffen:  49824, akbesetzt:8.77207807518846},
+		{land:'Sachsen-Anhalt', jahr:2008, dritt:  88831850, grund:  469440700, stud:  51725, absolv:  7205, bip:  52600000000, ew: 1013175, svpb:  748430, fue:  3702, al: 174515, alquote:13.9, e400:  90360, e400Frau:  55236, betr:  368, kurz:   2878, einwohner: 2381872, akoffen:  47471, akbesetzt:8.79043770717898},
+		{land:'Sachsen-Anhalt', jahr:2009, dritt:  95051820, grund:  478812680, stud:  52548, absolv:  8335, bip:  50400000000, ew: 1008484, svpb:  744890, fue:  3878, al: 167664, alquote:13.6, e400:  91392, e400Frau:  54804, betr: 1686, kurz:  19473, einwohner: 2356219, akoffen:  47837, akbesetzt:9.03003227610557},
+		{land:'Sachsen-Anhalt', jahr:2010, dritt: 108587420, grund:  534621980, stud:  53643, absolv:  8280, bip:  52200000000, ew: 1014183, svpb:  751618, fue:  3929, al: 151280, alquote:12.5, e400:  89713, e400Frau:  53789, betr: 1796, kurz:  12746, einwohner: 2335006, akoffen:  56011, akbesetzt:9.07887043419988},
+		
+		{land:'Thüringen',      jahr:2000, dritt:  49699000, grund:  458906000, stud:  36719, absolv:  3348, bip:  40600000000, ew: 1063635, svpb:  809950, fue:  3135, al: 193663, alquote:15.4, e400:  77485, e400Frau:  47578, betr:  403, kurz:   3875, einwohner: 2431255, akoffen: 129244, akbesetzt:10.4122716623081},
+		{land:'Thüringen',      jahr:2001, dritt:  60826000, grund:  479948000, stud:  42250, absolv:  3848, bip:  41700000000, ew: 1049083, svpb:  785917, fue:  3331, al: 194131, alquote:15.3, e400:  82127, e400Frau:  49558, betr:  466, kurz:   5464, einwohner: 2411387, akoffen: 122910, akbesetzt:10.4630825022209},
+		{land:'Thüringen',      jahr:2002, dritt:  63152000, grund:  631834000, stud:  45577, absolv:  4113, bip:  42400000000, ew: 1027704, svpb:  756323, fue:  3382, al: 201157, alquote:15.9, e400:  83838, e400Frau:  50342, betr:  568, kurz:   6933, einwohner: 2392040, akoffen:  83940, akbesetzt:10.4381376425777},
+		{land:'Thüringen',      jahr:2003, dritt:  67017000, grund:  460158000, stud:  48297, absolv:  4750, bip:  43400000000, ew: 1008622, svpb:  734165, fue:  3465, al: 210664, alquote:16.7, e400:  91737, e400Frau:  54251, betr:  572, kurz:   6523, einwohner: 2373157, akoffen:  65204, akbesetzt:10.3080490407274},
+		{land:'Thüringen',      jahr:2004, dritt:  68187000, grund:  440047000, stud:  47785, absolv:  5439, bip:  44600000000, ew: 1010673, svpb:  716622, fue:  3370, al: 207430, alquote:16.7, e400:  97889, e400Frau:  57563, betr:  506, kurz:   5192, einwohner: 2355280, akoffen:  50302, akbesetzt:10.1115071297066},
+		{land:'Thüringen',      jahr:2005, dritt:  71452000, grund:  432788000, stud:  48201, absolv:  6343, bip:  45000000000, ew: 1005137, svpb:  703117, fue:  3345, al: 209941, alquote:17.1, e400:  97552, e400Frau:  58254, betr:  453, kurz:   4539, einwohner: 2334575, akoffen:  50340, akbesetzt:10.2615691324139},
+		{land:'Thüringen',      jahr:2006, dritt:  85579610, grund:  429835060, stud:  48832, absolv:  6736, bip:  46800000000, ew: 1005868, svpb:  718118, fue:  3603, al: 188453, alquote:15.6, e400:  97168, e400Frau:  58982, betr:  264, kurz:   2413, einwohner: 2311140, akoffen:  52041, akbesetzt:10.1793578000945},
+		{land:'Thüringen',      jahr:2007, dritt:  95622840, grund:  428831130, stud:  49347, absolv:  6926, bip:  49100000000, ew: 1020811, svpb:  728107, fue:  3838, al: 158488, alquote:13.1, e400:  95958, e400Frau:  58558, betr:  429, kurz:   3390, einwohner: 2289219, akoffen:  54839, akbesetzt:10.1005718630173},
+		{land:'Thüringen',      jahr:2008, dritt: 104461610, grund:  475305460, stud:  49871, absolv:  7858, bip:  49400000000, ew: 1026963, svpb:  731844, fue:  4045, al: 134882, alquote:11.2, e400:  92618, e400Frau:  56473, betr:  534, kurz:   5287, einwohner: 2267763, akoffen:  55249, akbesetzt:10.0804273534433},
+		{land:'Thüringen',      jahr:2009, dritt: 121850060, grund:  462524330, stud:  51584, absolv:  8711, bip:  48100000000, ew: 1015111, svpb:  724251, fue:  4195, al: 136016, alquote:11.4, e400:  93560, e400Frau:  56289, betr: 2408, kurz:  35582, einwohner: 2249882, akoffen:  52701, akbesetzt:10.3784340203219},
+		{land:'Thüringen',      jahr:2010, dritt: 122370900, grund:  546810000, stud:  52566, absolv: 10153, bip:  49900000000, ew: 1023107, svpb:  741351, fue:  4446, al: 117056, alquote: 9.8, e400:  88928, e400Frau:  52748, betr: 2375, kurz:  18358, einwohner: 2235025, akoffen:  68543, akbesetzt:10.3495699986857},
 
-{land:'Deutschland',jahr:2000,dritt:2829771000,ausg:16108762000,stud:1799338,absolv:214473,bip:2047500000000,einwohner:82259540,svpb:27979593,fue:484734,al:3889695,ew:39382000,e400:4198864,e400Frau:2981390,betr:5516,kurz:86052,akoffen:3558427,akbesetzt:8.47585304825509},
-
-{land:'Deutschland',jahr:2001,dritt:3075706000,ausg:16596194300,stud:1868666,absolv:208123,bip:2101900000000,einwohner:82440309,svpb:27864091,fue:480606,al:3852564,ew:39485000,e400:4201802,e400Frau:2969492,betr:7049,kurz:122942,akoffen:3190112,akbesetzt:8.6847650694461},
-
-{land:'Deutschland',jahr:2002,dritt:3304906300,ausg:17757599000,stud:1939233,absolv:208606,bip:2132200000000,einwohner:82536680,svpb:27360497,fue:480004,al:4061345,ew:39257000,e400:4183791,e400Frau:2938298,betr:12395,kurz:206767,akoffen:2254549,akbesetzt:8.92978808607418},
-
-{land:'Deutschland',jahr:2003,dritt:3436525000,ausg:17837932000,stud:2019831,absolv:218146,bip:2147500000000,einwohner:82531671,svpb:26746384,fue:472533,al:4376795,ew:38918000,e400:4544180,e400Frau:3095339,betr:13404,kurz:195371,akoffen:1902187,akbesetzt:9.1593535906892},
-
-{land:'Deutschland',jahr:2004,dritt:3466169000,ausg:17148000000,stud:1963598,absolv:230940,bip:2195700000000,einwohner:82500849,svpb:26381842,fue:470729,al:4381281,ew:39034000,e400:4891002,e400Frau:3282259,betr:11726,kurz:150593,akoffen:1638592,akbesetzt:9.29926735736738},
-
-{land:'Deutschland',jahr:2005,dritt:3661570000,ausg:17166884000,stud:1986106,absolv:252482,bip:2224400000000,einwohner:82437995,svpb:26205969,fue:475278,al:4860909,ew:38976000,e400:4893323,e400Frau:3285716,betr:10998,kurz:125505,akoffen:1814233,akbesetzt:9.54942928611085},
-
-{land:'Deutschland',jahr:2006,dritt:3855212230,ausg:17087447060,stud:1979445,absolv:265704,bip:2313900000000,einwohner:82314906,svpb:26636361,fue:487935,al:4487305,ew:39192000,e400:4920701,e400Frau:3315893,betr:6577,kurz:66980,akoffen:1991193,akbesetzt:9.71998687426616},
-
-{land:'Deutschland',jahr:2007,dritt:4262246720,ausg:16926508150,stud:1941763,absolv:286391,bip:2428500000000,einwohner:82217837,svpb:27224084,fue:506450,al:3760076,ew:39857000,e400:4943186,e400Frau:3343163,betr:8333,kurz:68316,akoffen:2073989,akbesetzt:9.87501715723129},
-
-{land:'Deutschland',jahr:2008,dritt:4852844070,ausg:18433715360,stud:2025742,absolv:309364,bip:2473800000000,einwohner:82002356,svpb:27632286,fue:522688,al:3258453,ew:40345000,e400:4920121,e400Frau:3318065,betr:10052,kurz:101540,akoffen:1947710,akbesetzt:10.0609245889543},
-
-{land:'Deutschland',jahr:2009,dritt:5348138520,ausg:19584091570,stud:2121190,absolv:338656,bip:2374500000000,einwohner:81802257,svpb:27487548,fue:534565,al:3414531,ew:40362000,e400:4971298,e400Frau:3309195,betr:55937,kurz:1144407,akoffen:1617824,akbesetzt:10.4412380438695},
-
-{land:'Deutschland',jahr:2010,dritt:5907942420,ausg:20544735090,stud:2217604,absolv:361697,bip:2496200000000,einwohner:81751602,svpb:28033420,fue:548526,al:3238421,ew:40553000,e400:4931287,e400Frau:3264530,betr:49121,kurz:502694,akoffen:2018341,akbesetzt:10.6110332885885}
+		{land:'Deutschland',    jahr:2000, dritt:2829771000, grund:16108762000, stud:1799338, absolv:214473, bip:2047500000000, ew:39382000, svpb:27979593, fue:484734, al:3889695, alquote: 9.6, e400:4198864, e400Frau:2981390, betr: 5516, kurz:  86052, einwohner:82259540, akoffen:3558427, akbesetzt: 8.4758530482550},
+		{land:'Deutschland',    jahr:2001, dritt:3075706000, grund:16596194300, stud:1868666, absolv:208123, bip:2101900000000, ew:39485000, svpb:27864091, fue:480606, al:3852564, alquote: 9.4, e400:4201802, e400Frau:2969492, betr: 7049, kurz: 122942, einwohner:82440309, akoffen:3190112, akbesetzt: 8.6847650694461},  
+  		{land:'Deutschland',    jahr:2002, dritt:3304906300, grund:17757599000, stud:1939233, absolv:208606, bip:2132200000000, ew:39257000, svpb:27360497, fue:480004, al:4061345, alquote: 9.8, e400:4183791, e400Frau:2938298, betr:12395, kurz: 206767, einwohner:82536680, akoffen:2254549, akbesetzt: 8.9297880860741},
+		{land:'Deutschland',    jahr:2003, dritt:3436525000, grund:17837932000, stud:2019831, absolv:218146, bip:2147500000000, ew:38918000, svpb:26746384, fue:472533, al:4376795, alquote:10.5, e400:4544180, e400Frau:3095339, betr:13404, kurz: 195371, einwohner:82531671, akoffen:1902187, akbesetzt: 9.1593535906892},
+		{land:'Deutschland',    jahr:2004, dritt:3466169000, grund:17148000000, stud:1963598, absolv:230940, bip:2195700000000, ew:39034000, svpb:26381842, fue:470729, al:4381281, alquote:10.5, e400:4891002, e400Frau:3282259, betr:11726, kurz: 150593, einwohner:82500849, akoffen:1638592, akbesetzt: 9.2992673573673},
+		{land:'Deutschland',    jahr:2005, dritt:3661570000, grund:17166884000, stud:1986106, absolv:252482, bip:2224400000000, ew:38976000, svpb:26205969, fue:475278, al:4860909, alquote:11.7, e400:4893323, e400Frau:3285716, betr:10998, kurz: 125505, einwohner:82437995, akoffen:1814233, akbesetzt: 9.5494292861108},
+		{land:'Deutschland',    jahr:2006, dritt:3855212230, grund:17087447060, stud:1979445, absolv:265704, bip:2313900000000, ew:39192000, svpb:26636361, fue:487935, al:4487305, alquote:10.8, e400:4920701, e400Frau:3315893, betr: 6577, kurz:  66980, einwohner:82314906, akoffen:1991193, akbesetzt: 9.7199868742661},
+		{land:'Deutschland',    jahr:2007, dritt:4262246720, grund:16926508150, stud:1941763, absolv:286391, bip:2428500000000, ew:39857000, svpb:27224084, fue:506450, al:3760076, alquote: 9.0, e400:4943186, e400Frau:3343163, betr: 8333, kurz:  68316, einwohner:82217837, akoffen:2073989, akbesetzt: 9.8750171572312},
+		{land:'Deutschland',    jahr:2008, dritt:4852844070, grund:18433715360, stud:2025742, absolv:309364, bip:2473800000000, ew:40345000, svpb:27632286, fue:522688, al:3258453, alquote: 7.8, e400:4920121, e400Frau:3318065, betr:10052, kurz: 101540, einwohner:82002356, akoffen:1947710, akbesetzt:10.0609245889543},
+		{land:'Deutschland',    jahr:2009, dritt:5348138520, grund:19584091570, stud:2121190, absolv:338656, bip:2374500000000, ew:40362000, svpb:27487548, fue:534565, al:3414531, alquote: 8.1, e400:4971298, e400Frau:3309195, betr:55937, kurz:1144407, einwohner:81802257, akoffen:1617824, akbesetzt:10.4412380438695},
+		{land:'Deutschland',    jahr:2010, dritt:5907942420, grund:20544735090, stud:2217604, absolv:361697, bip:2496200000000, ew:40553000, svpb:28033420, fue:548526, al:3238421, alquote: 7.7, e400:4931287, e400Frau:3264530, betr:49121, kurz: 502694, einwohner:81751602, akoffen:2018341, akbesetzt:10.6110332885885}
 
 	],
 	wanderung:[
-		{regionId:'120000000000',ausMDR: 22000,nachMDR:  5000,saldo: 17000,saldoP:0.035441,value:0.06249},
-		{regionId:'110000000000',ausMDR:120000,nachMDR: 20000,saldo:100000,saldoP:0.210049,value:0.14869},
-		{regionId:'080000000000',ausMDR: 54000,nachMDR: 14000,saldo: 40000,saldoP:0.084032,value:0.0315},
-		{regionId:'090000000000',ausMDR: 76000,nachMDR: 25000,saldo: 51000,saldoP:0.106938,value:0.0349},
-		{regionId:'040000000000',ausMDR:  5000,nachMDR:  2000,saldo:  3000,saldoP:0.006719,value:0.03761},
-		{regionId:'060000000000',ausMDR: 42000,nachMDR: 12000,saldo: 30000,saldoP:0.062232,value:0.03797},
-		{regionId:'020000000000',ausMDR: 27000,nachMDR:  5000,saldo: 22000,saldoP:0.046208,value:0.07414},
-		{regionId:'130000000000',ausMDR: 20000,nachMDR:  5000,saldo: 15000,saldoP:0.031177,value:0.09809},
-		{regionId:'030000000000',ausMDR: 38000,nachMDR: 15000,saldo: 23000,saldoP:0.04835,value:0.0298},
-		{regionId:'050000000000',ausMDR: 55000,nachMDR: 29000,saldo: 26000,saldoP:0.054387,value:0.01398},
-		{regionId:'070000000000',ausMDR: 10000,nachMDR:  7000,saldo:  3000,saldoP:0.006657,value:0.00801},
-		{regionId:'010000000000',ausMDR:  7600,nachMDR:   600,saldo:  7000,saldoP:0.014386,value:0.0238},
-		{regionId:'100000000000',ausMDR:  1700,nachMDR:   300,saldo:  1400,saldoP:0.002943,value:0.01507},
-		{regionId:'140000000000',ausMDR:280000,nachMDR:260000,saldo: 20000,saldoP:0.04137,value:0.04089},
-		{regionId:'150000000000',ausMDR: 80000,nachMDR: 95000,saldo:-15000,saldoP:-0.032165,value:-0.07444},
-		{regionId:'160000000000',ausMDR:100000,nachMDR:104000,saldo: -4000,saldoP:-0.009206,value:-0.01996},
-		{regionId:'MDR',         ausMDR:480000,nachMDR:140000,saldo:340000,saldoP:0.709517,value:0.37246}
+		{regionId:'120000000000', ausMDR: 22000, nachMDR:  5000, saldo: 17000, saldoP: 0.035441, value: 0.06249},
+		{regionId:'110000000000', ausMDR:120000, nachMDR: 20000, saldo:100000, saldoP: 0.210049, value: 0.14869},
+		{regionId:'080000000000', ausMDR: 54000, nachMDR: 14000, saldo: 40000, saldoP: 0.084032, value: 0.03150},
+		{regionId:'090000000000', ausMDR: 76000, nachMDR: 25000, saldo: 51000, saldoP: 0.106938, value: 0.03490},
+		{regionId:'040000000000', ausMDR:  5000, nachMDR:  2000, saldo:  3000, saldoP: 0.006719, value: 0.03761},
+		{regionId:'060000000000', ausMDR: 42000, nachMDR: 12000, saldo: 30000, saldoP: 0.062232, value: 0.03797},
+		{regionId:'020000000000', ausMDR: 27000, nachMDR:  5000, saldo: 22000, saldoP: 0.046208, value: 0.07414},
+		{regionId:'130000000000', ausMDR: 20000, nachMDR:  5000, saldo: 15000, saldoP: 0.031177, value: 0.09809},
+		{regionId:'030000000000', ausMDR: 38000, nachMDR: 15000, saldo: 23000, saldoP: 0.048350, value: 0.02980},
+		{regionId:'050000000000', ausMDR: 55000, nachMDR: 29000, saldo: 26000, saldoP: 0.054387, value: 0.01398},
+		{regionId:'070000000000', ausMDR: 10000, nachMDR:  7000, saldo:  3000, saldoP: 0.006657, value: 0.00801},
+		{regionId:'010000000000', ausMDR:  7600, nachMDR:   600, saldo:  7000, saldoP: 0.014386, value: 0.02380},
+		{regionId:'100000000000', ausMDR:  1700, nachMDR:   300, saldo:  1400, saldoP: 0.002943, value: 0.01507},
+		{regionId:'140000000000', ausMDR:280000, nachMDR:260000, saldo: 20000, saldoP: 0.041370, value: 0.04089},
+		{regionId:'150000000000', ausMDR: 80000, nachMDR: 95000, saldo:-15000, saldoP:-0.032165, value:-0.07444},
+		{regionId:'160000000000', ausMDR:100000, nachMDR:104000, saldo: -4000, saldoP:-0.009206, value:-0.01996},
+		{regionId:'MDR',          ausMDR:480000, nachMDR:140000, saldo:340000, saldoP: 0.709517, value: 0.37246}
 	],
 	studienanfaenger:[
 		// Jahr,Bundesland,Studienanfänger,Einwohner
