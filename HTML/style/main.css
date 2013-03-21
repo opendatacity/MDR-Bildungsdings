@@ -6,7 +6,7 @@ http://jqueryui.com/themeroller/#ffDefault=Verdana%2CArial%2Csans-serif&fwDefaul
 */
 
 * {
-	font-family:Verdana,Arial,sans-serif;
+	font-family: arial,verdana,sans-serif;
 }
 
 body,html {
@@ -17,6 +17,9 @@ body,html {
 	height:600px; /* height without navi */
 }
 
+.ui-tabs-nav {
+height:33px;
+}
 .tab {
 	position:relative;
 }
@@ -41,6 +44,15 @@ p a:hover, p a:active, p a:focus {
 	text-decoration:underline;
 }
 
+.text-mit-tt {
+	font-weight: 700;
+	cursor: default;
+	background: url("icon_tooltip.png") no-repeat top right;
+	padding: 0 15px 0 0;
+}
+#tooltip .ttText {
+	width: 300px;
+}
 #tooltip {
 	position:absolute;
 	left:0;
@@ -71,4 +83,98 @@ p a:hover, p a:active, p a:focus {
 
 #sMap, #aMap, #wMap {
 	background: url('shadow.png') no-repeat -2px 12px;
+}
+
+.quellen {
+	position:absolute;
+	right:10px;
+	bottom:10px;
+	width:70px;
+	height:16px;
+	border:1px solid #e6e7db;
+	background-color:#eee;
+	padding:0;
+	margin:0;
+	overflow:hidden;
+}
+.quellen h1 {
+	cursor:pointer;
+	background-color:#e6e7db;
+	margin:0 0 5px 0;
+	padding:0;
+	text-decoration:none;
+	font-weight:normal;
+	color:#004e9e;
+	text-align:center;
+	font-size:14px;
+}
+.quellen:hover {
+	border:1px solid #aaa;
+}
+.quellen:hover h1 {
+	background-color:#bbb;
+}
+.quellen.open h1 {
+	background-color:#afad97;
+	background-image:url('closeIcon.png');
+	background-repeat:no-repeat;
+	background-position:right top;
+}
+.quellen p {
+	margin:0;
+	padding:2px 9px 2px 9px;
+}
+.quellen p a {
+	text-decoration:underline;
+}
+.quellen p a:hover {
+	background-color:#bbb;
+}
+.quellen.open {
+	z-index:100;
+	padding:0 0 4px 0;
+	right:30px;
+	bottom:30px;
+	width:400px;
+	height:auto;
+	-webkit-box-shadow: 3px 4px 7px #2b2b2b;
+	-moz-box-shadow: 3px 4px 7px #2b2b2b;
+	box-shadow: 3px 4px 7px #2b2b2b;
+}
+
+/* +++ Diagramme +++ */
+
+.box-legende-diagramme {
+	overflow: hidden;
+	position: absolute;
+	top: 34px;
+	left: 35px;
+}
+
+.legende-diagramme {
+	list-style-type: none;
+	margin: 0;
+}
+.legende-diagramme li {
+	float: left;
+}
+.legende-diagramme .legende-box {
+	width:13px; 
+	height:13px; 
+	display:inline-block; 
+	margin:0 4px -3px 15px;
+	border:1px solid rgba(0,0,0,0.3);
+}
+.legende-diagramme .sachsen {
+	background-color:#219511;
+}
+.legende-diagramme .sachsen-anhalt {
+	background-color:#B38910;
+}
+.legende-diagramme .thueringen {
+	background-color:#A10F0B;
+}
+
+.diagrammhinweis {
+	font-size:11px;
 }
