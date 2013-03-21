@@ -32,10 +32,8 @@ function regionid2region(regionid) { // convert region code to path
 }
 
 
-
-function paintLegend(map, maximum, steps, gradient) {
+/*function paintLegend(map, maximum, steps, gradient) {
 	r = map.rect(330, 330, 25, 150);
-
 
 	for (var i=1; i>0; i-=0.01) {
 		r = map.rect(330, 480-i*150, 25, 1);
@@ -43,14 +41,62 @@ function paintLegend(map, maximum, steps, gradient) {
 		r.attr("stroke", value2color(i, gradient));
 	}
 
-	for (var i=1; i>0; i-=1/(steps-1)) {
-		map.text(318, 480-i*150, Math.round(maximum*i));
+	for (var i=1; i>-0.1; i-=1/(steps-1)) {
+		if (maximum < 10000) var x = 318;
+			else var x = 305;
+		if (Math.round(maximum*i)==0) x=318;
+		map.text(x, 480-i*150, Math.round(maximum*i));
 	}
+}*/
+function paintLegend(map, maximum, steps, gradient) {
+	r = map.rect(330, 330, 25, 150);
+
+	for (var i=1; i>0; i-=0.01) {
+		r = map.rect(330, 480-i*150, 25, 1);
+		r.attr("fill", value2color(i, gradient));
+		r.attr("stroke", value2color(i, gradient));
+	}
+
+	var legendText={};
+	for (var i=1; i>-0.1; i-=1/(steps-1)) {
+		if (maximum < 10000) var x = 318;
+			else var x = 305;
+		if (Math.round(maximum*i)==0) x=318;
+		legendText[Math.round(maximum*i)]=map.text(x, 480-i*150, Math.round(maximum*i));
+	}
+	$('#tabs').data('legendText',legendText);
 }
 
+/*function updateSchuelerTab(wettbewerb) {
+	var r;
+	var map;
+	map = $('#sMap').data('map');
 
+	$.each(database.schueler, function (index, schueler) { // iterate regions
+		r = $('#sMap').data(schueler.regionId);
 
+		if (schueler.regionId != "000000000000") { // not whole Schland
+			// fill region:
+			if (wettbewerb=="Mathe") {
+				r.attr({
+					fill: value2color(schueler.mathe/60)
+				});
+			} else {
+				r.attr({
+					fill: value2color(schueler.jufo/60)
+				});
+			}
+			
+			if (wettbewerb=="Mathe") {
+				$(r).data("rel",schueler.mathe);
+			} else {
+				$(r).data("rel",schueler.jufo);
+			}
+		}
+	});
 
+} // updateSchuelerTab
+*/
 
 function updateSchuelerTab(wettbewerb) {
 	var r;
@@ -64,25 +110,59 @@ function updateSchuelerTab(wettbewerb) {
 			// fill region:
 			if (wettbewerb=="Mathe") {
 				r.attr({
-					fill: value2color(schueler.matheRel/60)
+					fill: value2color(schueler.matoly/150)
 				});
+				$(r).data("rel",schueler.matoly);
 			} else {
 				r.attr({
-					fill: value2color(schueler.jufoRel/60)
+					fill: value2color(schueler.jufo/30)
 				});
-			}
-			
-			if (wettbewerb=="Mathe") {
-				$(r).data("rel",schueler.matheRel);
-			} else {
-				$(r).data("rel",schueler.jufoRel);
+				$(r).data("rel",schueler.jufo);
+
 			}
 		}
 	});
+	if (wettbewerb=="Mathe") {
+		$('#tabs').data('legendText')[1].attr('text',"50");
+		$('#tabs').data('legendText')[2].attr('text',"100");
+		$('#tabs').data('legendText')[3].attr('text',"150");
+	} else {
+		$('#tabs').data('legendText')[1].attr('text',"10");
+		$('#tabs').data('legendText')[2].attr('text',"20");
+		$('#tabs').data('legendText')[3].attr('text',"30");
+	}
 
 } // updateSchuelerTab
 
 function loadSchuelerTab() {
+
+	tooltip4Text('#ttIntMatheOlympiade');
+	tooltip4Text('#ttJugendForscht');
+
+	var qMathe = 'Mathematik-Olympiaden e.V.'; 
+	var qJugend = 'Stiftung Jugend forscht e.V.';
+
+	// +++ Blendet alle Teiltexte aus +++
+	$('#schuelerTxtAll div').css({display:'none'});
+
+	// +++ Texte bei Erst- und Wiedereintritt +++
+	var currButtonId,newButtonId,currTxtId,newTxtId
+	currButtonId = $('#matheJugendForscht input[name=radio]:checked').attr('id');
+	switch(currButtonId){
+		case 'sMathe': 
+		currTxtId = 'schuelerTxtMathe'; 
+		$('#schuelerQuelle').text(qMathe);
+		break
+
+		case 'sJugend': 
+		currTxtId = 'schuelerTxtJugend'; 
+		$('#schuelerQuelle').text(qJugend);
+		break
+	}
+	$('#'+currTxtId).css({display:'block'});
+
+
+
 	if ($('#schueler').data('loaded')) return;
 
 	var map = Raphael($("#sMap")[0], 360, 500);
@@ -95,20 +175,20 @@ function loadSchuelerTab() {
 		
 		if (schueler.regionId != "000000000000") { // not whole Schland
 			r = map.path(region.path).attr({stroke:'none'});
-			
+
 			$('#sMap').data(schueler.regionId, r);
-			
 			$(r).data('name', region.name);
-			
+
 			r.hover(function(e) { // in
 				tooltipIn('<h1>'+$(this).data("name")+'</h1>'+
-					'<p>'+Math.round($(this).data("rel"))+' Gewinner auf eine Million Schüler</p>');
+					'<p>'+Math.round($(this).data("rel"))+' Gewinner</p>');
 			},function() { // out
 				tooltipOut();
 			});
 		}
 	});
-	
+
+
 	// Draw borders
 	$.each(database.schueler, function(index, schueler) { // iterate regions
 		if (true) { // new region
@@ -121,37 +201,81 @@ function loadSchuelerTab() {
 		}
 	});
 	
-	// legend
+	/*// legend
 	paintLegend(map,60,4);
 
+	// +++ Radio Buttons +++
+	$("#schueler form div div").buttonset();*/
+
+	paintLegend(map,3,4);
 
 	// +++ Radio Buttons +++
+	$("#schueler #sMathe").attr('checked','checked');
 	$("#schueler form div div").buttonset();
+
 	
 	$('#schueler input').change(function(){
 		if (this.checked)
 			if ($(this).attr('id') == 'sJugend')
 				updateSchuelerTab('Jugend');
 				else updateSchuelerTab('Mathe');
+
+			// +++ Texte bei Nutzung der Button +++
+			currButtonId = $('#matheJugendForscht input[name=radio]:checked').attr('id');
+			switch(currButtonId){
+				case 'sMathe': 
+				newTxtId = 'schuelerTxtMathe'; 
+				$('#schuelerQuelle').text(qMathe);
+				break
+
+				case 'sJugend': 
+				newTxtId = 'schuelerTxtJugend'; 
+				$('#schuelerQuelle').text(qJugend);
+				break
+			}
+			$('#'+currTxtId).fadeOut('fast',function(){
+				$('#'+newTxtId).fadeIn('fast');		
+			});
+			currTxtId = newTxtId;
 	});
 
 	updateSchuelerTab('Mathe');
 	$('#schueler').data('loaded',true);
+
 } // loadSchuelerTab
 
 // ##################### Abiturienten ###############
 
 function updateAbiturientenTabMap() {
-	var map;
-	map = $('#aMap').data('map');
-	var year;
-	year = $('#aBigYear').data('year');
 	var brdmdr;
 	brdmdr = $('#aBrdmdr input:checked').val();
 
+	var map;
+	if (brdmdr=='brd') { // BRD
+		$('#aMdrMap').hide();
+		$('#aMap').show();
+		map = $('#aMap').data('map');
+	} else {
+		$('#aMap').hide();
+		$('#aMdrMap').show();
+		map = $('#aMdrMap').data('map');
+	}
+	var year;
+	year = $('#aBigYear').data('year');
+
 	$.each(database.abiturienten2,function(index,abiturienten) { // iterate regions
 		// if (!abiturienten) return;
-		r = abiturienten['r'];
+		if (abiturienten.regionId=='00000') { // BRD
+			$('#abiturienten').data('brd',abiturienten[year]);
+		}
+
+		if (brdmdr=='brd') { // BRD
+			if (typeof abiturienten['r'] == 'undefined') return;
+			r = abiturienten['r'];
+		} else {
+			if (typeof abiturienten['rMdr'] == 'undefined') return;
+			r = abiturienten['rMdr'];
+		}
 
 		if(abiturienten[year]===undefined) {
 			r.hide();
@@ -159,9 +283,9 @@ function updateAbiturientenTabMap() {
 		}
 
 		if (abiturienten.regionId=='00000') { // BRD
-			$('#aMap').data('brd',abiturienten[year]);
 		} else if (abiturienten.regionId.substr(2,3) == '000') { // Land
 			$('#aMap').data('land'+abiturienten.regionId.substring(0,2),abiturienten[year]);
+			$('#aMdrMap').data('land'+abiturienten.regionId.substring(0,2),abiturienten[year]);
 		}
 
 
@@ -189,6 +313,10 @@ function updateAbiturientenTabMap() {
 
 		r.show();
 		if ((abiturienten.regionId!='00000') && !(($(r).data('mdrland')) && (brdmdr=='mdr'))) {
+			r.attr({
+				fill: value2color(abiturienten[year]/0.6)
+			});
+		} else if ((abiturienten.regionId=='00000') && (brdmdr=='mdr')) {
 			r.attr({
 				fill: value2color(abiturienten[year]/0.6)
 			}); // Sloooooooow.
@@ -235,13 +363,31 @@ function updateAbiturientenTabYear(year) {
 } // updateAbiturientenTabYear
 
 function loadAbiturientenTab() {
+
+	tooltip4Text('#ttDoppelterAbiJahrgang');
+
+	// +++ Blendet alle Teiltexte aus +++
+	$('#abiTxtAll div').css({display:'none'});
+
+	// +++ Texte bei Erst- und Wiedereintritt +++
+	var currButtonId,newButtonId,currTxtId,newTxtId
+	currButtonId = $('#aBrdmdr input[name=brdmdr]:checked').attr('id');
+	switch(currButtonId){
+		case 'aBrdmdrBrd': currTxtId = 'abiTxtBRD'; break
+		case 'aBrdmdrMdr': currTxtId = 'abiTxtMDR'; break
+	}
+	$('#'+currTxtId).css({display:'block'});
+
 	if ($('#abiturienten').data('loaded')) return;
 
 	// +++ Map +++
 	var map = Raphael($("#aMap")[0], 360, 500);
+	var mapMdr = Raphael($("#aMdrMap")[0], 360, 500);
+
 	var region;
-	
+
 	$('#aMap').data('map',map);
+	$('#aMdrMap').data('map',mapMdr);
 	
 
 	// convert abiturienten table to new table
@@ -256,65 +402,126 @@ function loadAbiturientenTab() {
 				return;
 			}
 
-			r = map.path(region.path).attr({
-				'stroke': 'none'
-			});
 
 			if (abiturienten.region.substr(2,3) != '000') { // Region
-				$(r).data('regionId', abiturienten.region);
+				rMdr = mapMdr.path(region.path).attr({'stroke': 'none'});
+				rMdr.scale(1.7,1.7,360,240);
+				$(rMdr).data('regionId', abiturienten.region);
 			}
 			if ((abiturienten.region!='00000') &&
 				(abiturienten.region.substr(2,3) == '000')) { // Land
+				r = map.path(region.path).attr({'stroke': 'none'});
+				rMdr = mapMdr.path(region.path).attr({'stroke': 'none'});
+				rMdr.scale(1.7,1.7,360,240);
 				$('#aMap').data('land'+abiturienten.region.substring(0,2)+'name',region.name);
+				$('#aMdrMap').data('land'+abiturienten.region.substring(0,2)+'name',region.name);
 			}
-			
+			if (abiturienten.region=='00000') { // Bundesrepublik
+				r = map.path(region.path).attr({'stroke': 'none'});
+			}
+
 			// add region/land/brd to abiturienten2
 			database.abiturienten2[abiturienten.region] = {
-				r: r,
 				regionId: abiturienten.region
 			};
+			if (typeof r!='undefined') {
+				database.abiturienten2[abiturienten.region]['r'] = r;
+				$(r).data('name', region.name);
+				$(r).data('mdrland', abiturienten.mdrland);
+				r.hover(
+					function(e) { // in
+						if ($(this).data('name') == 'Bundesrepublik Deutschland') {
+						var tooltipText = '<table><tr>'
+							+ '<td style="font-weight:bold;">Deutschland</td>'
+							+ '<td>' + number2Percent($('#aMap').data('brd')) + '</td></tr></table>';
+							tooltipIn(tooltipText);
+							return;
+						}
 
-			$(r).data('name', region.name);
-			$(r).data('mdrland', abiturienten.mdrland);
+						var tooltipText='';
+						// region's data:
+						tooltipText += '<table><tr>'
+							+ '<td style="font-weight:bold;">' + $(this).data("name") + '</td>'
+							+ '<td>' + number2Percent($(this).data('quote')) + '</td></tr>';
 
-			r.hover(
-				function(e) { // in
-					var tooltipText='';
-					// region's data:
-					tooltipText += '<table><tr>'
-						+ '<td style="font-weight:bold;">' + $(this).data("name") + '</td>'
-						+ '<td>' + number2Percent($(this).data('quote')) + '</td></tr>';
-					if ($(this).data('regionId')) { // This is a small region of a Bundesland
-						// identifier for the region's id and name in data object:
-						var id = 'land'+$(this).data('regionId').substring(0,2);
-						tooltipText += '<tr><td>'+$('#aMap').data(id+'name')+'</td>'
-							+ '<td>' + number2Percent($('#aMap').data(id)) + '</td></tr>';
+						// Bundesrepublik:
+						tooltipText += '<tr><td>Deutschland</td>'
+							+ '<td>' + number2Percent($('#abiturienten').data('brd')) + '</td></tr></table>';
+						if ((!$(this).data('mdrland')) || ($('#aBrdmdr input:checked').val()=='brd')) 					{
+							tooltipIn(tooltipText);
+						}
+					},
+					function() { // out
+						tooltipOut();
 					}
-					// Bundesrepublik:
-					tooltipText += '<tr><td>Deutschland</td>'
-						+ '<td>' + number2Percent($('#aMap').data('brd')) + '</td></tr></table>';
-					if ((!$(this).data('mdrland')) || ($('#aBrdmdr input:checked').val()=='brd')) 					{
-						tooltipIn(tooltipText);
+				);
+			}
+			if (typeof rMdr!='undefined') {
+				database.abiturienten2[abiturienten.region]['rMdr'] = rMdr;
+				$(rMdr).data('name', region.name);
+				$(rMdr).data('mdrland', abiturienten.mdrland);
+
+				rMdr.hover(
+					function(e) { // in
+						if ($(this).data('name') == 'Bundesrepublik Deutschland') {
+						var tooltipText = '<table><tr>'
+							+ '<td style="font-weight:bold;">Deutschland</td>'
+							+ '<td>' + number2Percent($('#aMdrMap').data('brd')) + '</td></tr></table>';
+							tooltipIn(tooltipText);
+							return;
+						}
+
+						var tooltipText='';
+						// region's data:
+						tooltipText += '<table><tr>'
+							+ '<td style="font-weight:bold;">' + $(this).data("name") + '</td>'
+							+ '<td>' + number2Percent($(this).data('quote')) + '</td></tr>';
+						if ($(this).data('regionId')) { // This is a small region of a Bundesland
+							// identifier for the region's id and name in data object:
+							var id = 'land'+$(this).data('regionId').substring(0,2);
+							tooltipText += '<tr><td>'+$('#aMdrMap').data(id+'name')+'</td>'
+								+ '<td>' + number2Percent($('#aMdrMap').data(id)) + '</td></tr>';
+						}
+						// Bundesrepublik:
+						tooltipText += '<tr><td>Deutschland</td>'
+							+ '<td>' + number2Percent($('#abiturienten').data('brd')) + '</td></tr></table>';
+						if ((!$(this).data('mdrland')) || ($('#aBrdmdr input:checked').val()=='brd')) {
+							tooltipIn(tooltipText);
+						}
+					},
+					function() { // out
+						tooltipOut();
 					}
-				},
-				function() { // out
-					tooltipOut();
-				}
-			);
+				);
+
+			}
 		}
 		// Add quote to region
 		database.abiturienten2[abiturienten.region][abiturienten.jahr] = abiturienten.quote;
 	});
 
 	// legend
-	var abiturientenGradient = [[255,255,255],[142,216,248],[0,137,207]];
-	paintLegend(map, 60, 4 /*, abiturientenGradient */);
-
+	paintLegend(map, 60, 4);
+	paintLegend(mapMdr, 60, 4);
 
 	$("#aBrdmdr div").buttonset();
 	$('#aBrdmdr input').change(function(){
 		if (this.checked) {
+			if ($('#aBrdmdr input:checked').val()=='brd') { // BRD
+			} else { // MDR
+			}
 			updateAbiturientenTabMap();
+
+			// +++ Texte bei Nutzung der Button +++
+			currButtonId = $('#aBrdmdr input[name=brdmdr]:checked').attr('id');
+			switch(currButtonId){
+				case 'aBrdmdrBrd': newTxtId = 'abiTxtBRD'; break
+				case 'aBrdmdrMdr': newTxtId = 'abiTxtMDR'; break
+			}
+			$('#'+currTxtId).fadeOut('fast',function(){
+				$('#'+newTxtId).fadeIn('fast');		
+			});
+			currTxtId = newTxtId;
 		}
 	});
 
@@ -327,6 +534,7 @@ function loadAbiturientenTab() {
 	if (touch) {
 		$('#aSlider').hide();
 		$('#aMap').data('year',2000);
+		$('#aMdrMap').data('year',2000);
 		$("#aButtonsYearNext, #aButtonsYearPrev").click(function(){
 			if ($(this).data('year')) {
 				updateAbiturientenTabYear($(this).data('year'));
@@ -582,9 +790,13 @@ function loadStudienanfaengerTab() {
 // ##################### Wanderung ###############
 
 
-function wanderungAddRegion(map,region,land,fill,mdr) {
+function wanderungAddRegion(map,region,land,fill,fillopacity,mdr) {
 		// mdr: bool if it is Sachsen, Sachsen-Anhalt or Thüringen
-		r = map.path(region.path).attr({stroke:'none', fill: fill});
+		var param = {
+			stroke:'none',
+			fill:fill,
+			'fill-opacity':fillopacity };
+		r = map.path(region.path).attr(param);
 		$(r).data({
 			'name': region.name,
 			'ausMDR': land.ausMDR,
@@ -606,12 +818,12 @@ function wanderungAddRegion(map,region,land,fill,mdr) {
 					) tooltipText +='MDR-Region';
 					else tooltipText +=$(this).data("name");
 					tooltipText +='</th></tr>'+
-					'<tr><td>'+(mdr ? 'Verlassen MDR' : 'Aus MDR-Region')+'</td>'+
-					'<td style="text-align:right;">'+formatNumber($(this).data("ausMDR"),0)+'</td></tr>'+
-					'<tr><td>'+(mdr ? 'Kommen nach MDR' : 'Nach MDR-Region')+'</td>'+
-					'<td style="text-align:right;">'+formatNumber($(this).data("nachMDR"),0)+'</td></tr>'+
+					'<tr><td>'+(mdr ? 'Aus MDR-Region' : 'Aus MDR-Region')+'</td>'+
+					'<td style="text-align:right;">'+(mdr ? '- ' : '+ ')+formatNumber($(this).data("ausMDR"),0)+'</td></tr>'+
+					'<tr><td>'+(mdr ? 'Nach MDR-Region' : 'Nach MDR-Region')+'</td>'+
+					'<td style="text-align:right;">'+(mdr ? '+ ' : '- ')+formatNumber($(this).data("nachMDR"),0)+'</td></tr>'+
 					'<tr><td>Saldo</td>'+
-					'<td style="text-align:right;">'+formatNumber($(this).data("saldo"),0)+'</td></tr>'+
+					'<td style="text-align:right;">'+(mdr ? '- ' : '+ ')+formatNumber($(this).data("saldo"),0)+'</td></tr>'+
 					'</table>';
 				tooltipIn(tooltipText);
 			},
@@ -623,26 +835,33 @@ function wanderungAddRegion(map,region,land,fill,mdr) {
 
 
 function loadWanderungTab() {
+	
+	tooltip4Text('#tt-wanderung-1');
+	
 	if ($('#wanderung').data('loaded')) return;
 	// +++ Map +++
 	var map = Raphael($("#wMap")[0], 360, 500);
 	//map.path(regions[0].path).attr({'stroke-opacity': '0.2'}); // Bundesrepublik. Slow!
-	
+	map.image("style/mdr-region-arrows.png", 120, 110, 235, 251);
+
 	$.each(database.wanderung, function(i, land){
 		if (land.regionId == 'MDR') {
 			// paint Sachen, Sachsen-Anhalt, Thüringen (MDR-Region):
 			$.each(['140000000000','150000000000','160000000000'],function(index,value) {
 				var region = regionid2region(value);
-				wanderungAddRegion(map,region,land,'#fff',true);
+				wanderungAddRegion(map,region,land,'#fff',0.5,true);
 			});
 		} else { // every other Bundesland
-			var region = regionid2region(land.regionId);
-			// var gradient = [[255,255,255],[142,216,248],[0,137,207]];
-			// var fill = value2color((land.value+0.01)*9); // percent
-			var fill = value2color((land.saldo+15000)/115000); // absolute
-			wanderungAddRegion(map, region, land, fill, false);
+			if ((land.regionId!=140000000000) &&
+				(land.regionId!=150000000000) &&
+				(land.regionId!=160000000000)) {
+				var region = regionid2region(land.regionId);
+				var fill = value2color((land.saldo+15000)/115000); // absolute
+				wanderungAddRegion(map, region, land, fill,1, false);
+			}
 		}
 	});
+
 	
 	map.path(regions[0].path).attr({'stroke-opacity': '0.3'}); // Bundesrepublik. Slow!
 
@@ -653,6 +872,9 @@ function loadWanderungTab() {
 			map.path(region.path).attr({'stroke-width': 1, 'stroke-opacity': '0.2'});
 		}
 	});
+
+	// legend
+	paintLegend(map, 100000, 2);
 	
 	$('#wanderung').data('loaded', true);
 } // loadWanderungTab

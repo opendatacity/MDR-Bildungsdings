@@ -1,61 +1,3 @@
-function getSplinePath(points) {
-	function computeControlPoints(K) {
-		var p1 = new Array();
-		var p2 = new Array();
-		var n = K.length-1;
-
-		var a = [0];
-		var b = [2];
-		var c = [1];
-		var r = [K[0]+2*K[1]];
-		
-		for (var i = 1; i < n - 1; i++) {
-			a[i] = 1;
-			b[i] = 4;
-			c[i] = 1;
-			r[i] = 4 * K[i] + 2 * K[i+1];
-		}
-				
-		a[n-1] = 2;
-		b[n-1] = 7;
-		c[n-1] = 0;
-		r[n-1] = 8*K[n-1]+K[n];
-		
-		for (var i = 1; i < n; i++) {
-			m = a[i]/b[i-1];
-			b[i] = b[i] - m * c[i-1];
-			r[i] = r[i] - m * r[i-1];
-		}
-	 
-		p1[n-1] = r[n-1]/b[n-1];
-		
-		for (var i = n - 2; i >= 0; --i) p1[i] = (r[i] - c[i] * p1[i+1]) / b[i];
-			
-		for (var i = 0; i < n-1; i++) p2[i] = 2*K[i+1] - p1[i+1];
-		
-		p2[n-1] = 0.5*(K[n]+p1[n-1]);
-		
-		return {p1:p1, p2:p2};
-	}
-	
-	var x = [], y = [];
-	
-	for (var i = 0; i < points.length; i++) {
-		x[i] = points[i][0];
-		y[i] = points[i][1];
-	}
-	
-	px = computeControlPoints(x);
-	py = computeControlPoints(y);
-	
-	var r = ['M'+x[0]+','+y[0]];
-	
-	for (var i = 0; i < points.length-1; i++) {
-		r.push('C'+px.p1[i]+','+py.p1[i]+','+px.p2[i]+','+py.p2[i]+','+x[i+1]+','+y[i+1]);
-	}
-	
-	return r.join('');
-} // getSplinePath
 
 function getLinePath(points) {
 	var x = [], y = [];
@@ -76,18 +18,22 @@ function getLinePath(points) {
 
 // Array of all dot-objects: {x, y, node, text}
 var lineChartDots = [];
+var lineChartDotsDeutschland = [];
 
 function updateHFTab(mapId, num1, num2, unit) {
+
+	//console.log('hochschulen ...');
+
 	var map;
 	map = $('#'+mapId).data('map');
 	map.clear();
 
 	// generate the data
 	var data = {
-//		'MDR-Land': [], // <-- MDR disabled
 		'Sachsen': [],
 		'Sachsen-Anhalt': [],
-		'Thüringen': []
+		'Thüringen': [],
+		'Deutschland': []
 	};
 	var maxPermill = 0;
 	var maxPermillStringLength = 0;
@@ -95,8 +41,8 @@ function updateHFTab(mapId, num1, num2, unit) {
 	$.each(database.hochschulen, function(index, value) {
 		if (num2=='1') var num = value[num1];
 			else var num = value[num1]/value[num2];
-		if (value.land!="MDR-Land") { // <-- MDR disabled
 			data[value.land].push(num);
+		if (value.land!="Deutschland") { // <-- Deutschland disabled
 			if (num*1000 > maxPermill) maxPermill = num*1000;
 		}
 	});
@@ -141,13 +87,13 @@ function updateHFTab(mapId, num1, num2, unit) {
 
 	for (var i = 0; i < caption.length; i++) {
 		if (caption[i] == 0) precision = 0; // last value always 0 and not 0,0
-		if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 12)) || (maxPermillStringLength > 13)) { // Billions
+		if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 12)) || (maxPermillStringLength > 12)) { // Billions
 			caption[i] = (caption[i] * Math.pow(10, maxPermillStringLength - 13));
-			caption[i] = formatNumber(caption[i], 0);
+			caption[i] = formatNumber(caption[i], 1);
 			caption[i] = caption[i] + ' Mrd';
-		} else if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 9)) || (maxPermillStringLength > 10)) { // Millions
+		} else if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 9)) || (maxPermillStringLength > 9)) { // Millions
 			caption[i] = (caption[i] * Math.pow(10, maxPermillStringLength - 10));
-			caption[i] = formatNumber(caption[i], 0);
+			caption[i] = formatNumber(caption[i], (maxPermill.toString()[0] > 2 ? 0 : 1));
 			caption[i] = caption[i]+' Mio';
 		} else if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 5)) || (maxPermillStringLength > 6)) { // Hundreds
 			caption[i] = (caption[i] * Math.pow(10, maxPermillStringLength - 4));
@@ -182,45 +128,64 @@ function updateHFTab(mapId, num1, num2, unit) {
 	map.path('M65.5 15.5L65.5 300.5'); // vertical line
 
 	lineChartDots = [];
+	lineChartDotsDeutschland = [];
 
 	// paint the four graphs:
 	$.each(data, function(index, value) {
-		var graph = [];
-		for (var i = 0; i < 11; i++) {
-			graph.push([(65+i*35), Math.round(300-(value[i]/maxPermill*1000)*285)]);
-		}
 		switch (index) {
 			case "Sachsen":        var color = "#219511"; break;
 			case "Sachsen-Anhalt": var color = "#B38910"; break;
 			case "Thüringen":      var color = "#A10F0B"; break;
-			case "MDR-Land":       var color = "#000000"; break;
+			case "Deutschland":    var color = "#000000"; break;
 		}
-		map.path(getLinePath(graph)).attr({'stroke':color,'stroke-width':2});
+
+		var graph = [];
+		for (var i = 0; i < 11; i++) {
+			graph.push([(65+i*35), Math.round(300-(value[i]/maxPermill*1000)*285)]);
+		}
+
+		if (index!="Deutschland") {
+			map.path(getLinePath(graph)).attr({'stroke':color,'stroke-width':2});
+		}
 
 		for (var i = 0; i < 11; i++) { // dots
-			r = map.circle(graph[i][0], graph[i][1], 3);
-			
-			r.attr({'fill':color, 'stroke-opacity':0.001, 'stroke-width':3});
-
 			if (maxPermillStringLength > 4) // 21.452
-				$(r).data('data', formatNumber(value[i], 0) );
+				var dataVar = formatNumber(value[i], 0);
 			else if (maxPermillStringLength > 2) // 26,7
-				$(r).data('data', formatNumber(value[i]*100, 1));
+				var dataVar = formatNumber(value[i]*100, 1);
 			else // 3,24
-				$(r).data('data', formatNumber(value[i]*100, 2));
+				var dataVar = formatNumber(value[i]*100, 2);
 
-			$(r).data('year', i+2000);
+			if (index!="Deutschland") {
+				r = map.circle(graph[i][0], graph[i][1], 3);
+				r.attr({'fill':color, 'stroke-opacity':0.001, 'stroke-width':3});
 
-			
-			lineChartDots.push({
-				x: graph[i][0],
-				y: graph[i][1],
-				node: r,
-				text:   '<p style="color:'+color+'">'
-				      + '<span style="font-weight:bold; margin-right:5px;">'+index+'</span> '+$(r).data('year')+'<br>'
-				      + ' &nbsp; &nbsp; ' + $(r).data('data') + ' ' + unit
-				      + '</p>'
-			});
+				$(r).data('data', dataVar);
+				$(r).data('year', i+2000);
+			}
+
+			if (index!="Deutschland") {
+				var dotDescription = {
+					x: graph[i][0],
+					y: graph[i][1],
+					node: r,
+					text:   '<p style="color:'+color+'">'
+						    + '<span style="font-weight:bold; margin-right:5px;">'+index+'</span> '+$(r).data('year')+'<br>'
+						    + ' &nbsp; &nbsp; ' + $(r).data('data') + ' ' + unit
+						    + '</p>'
+				}
+				lineChartDots.push(dotDescription);
+			} else {
+				var dotDescription = {
+					x: graph[i][0],
+					y: 0,
+					text:   '<p style="color:'+color+'">'
+						    + '<span style="font-weight:bold; margin-right:5px;">'+index+'</span> '+(i+2000)+'<br>'
+						    + ' &nbsp; &nbsp; ' + dataVar + ' ' + unit
+						    + '</p>'
+				}
+				lineChartDotsDeutschland.push(dotDescription);
+			}
 		}
 	});
 } // updateHFTab
@@ -240,6 +205,12 @@ function initDotHover(nodes) {
 				if (r < maxR) text += dot.text;
 			}
 			if (text != '') {
+				for (var i = 0; i < lineChartDotsDeutschland.length; i++) {
+					var dot = lineChartDotsDeutschland[i];
+					r = Math.sqrt(Math.pow(dot.x-x,2));
+					if (r < maxR) text += dot.text;
+				}
+
 				tooltipIn(text);
 			} else {
 				tooltipOut();
@@ -249,7 +220,38 @@ function initDotHover(nodes) {
 }
 
 function loadHochschulenTab() {
+
+	// +++ Blendet alle Teiltexte aus +++
+	$('#hTxtAll div').css({display:'none'});
+	//$('#hTxtAll #hTxt8').css({display:'block'});
+
+	tooltip4Text('#ttBevoelkerungszahl');
+	tooltip4Text('#ttStudentenSachsenAnhalt');
+	tooltip4Text('#ttStudentenThueringen');
+	tooltip4Text('#ttStudentenSachsen');
+
+	tooltip4Text('#ttAbsolventenSachsenAnhalt');
+	tooltip4Text('#ttAbsolventenThueringen');
+	tooltip4Text('#ttAbsolventenSachsen');
+
+	tooltip4Text('#ttStudentendichteDeutschland');
+	tooltip4Text('#ttAbsolventenDeutschland');
+	tooltip4Text('#ttGrundmittel1');
+	tooltip4Text('#ttGrundmittel2');
+	//tooltip4Text('#ttGrundmittel3');
+	tooltip4Text('#ttDrittmittel');
+	tooltip4Text('#ttBIP1');
+
+	// +++ Texte bei Erst- und Wiedereintritt +++
+	var currButtonId,newButtonId,currTxtId,newTxtId
+	currButtonId = $('#hValue input[name=hValue]:checked').attr('id');
+	currTxtId = currButtonId.replace('Val','Txt');
+	$('#'+currTxtId).css({display:'block'});
+
+	//console.log(currButtonId);
+
 	if ($('#hochschulen').data('loaded')) return;
+
 	// +++ Map +++
 	$('#hMap').data('map', Raphael($("#hMap")[0], 430, 325));
 
@@ -262,26 +264,62 @@ function loadHochschulenTab() {
 		values = $('#hValue input[name=hValue]:checked').val();
 		values = values.split('/');
 		updateHFTab('hMap', values[0], values[1], values[2]);
+
+		//Diagrammlegende wird deaktiviert
+/*
 		$('#hLegend').text(
 			$('#hValue label[for='+$('#hValue input:checked').attr('id')+']').attr('title')
 		);
+*/
+		// +++ Texte bei Nutzung der Button +++
+		newButtonId = $('#hValue input[name=hValue]:checked').attr('id');
+		newTxtId = newButtonId.replace('Val','Txt');
+		$('#'+currTxtId).fadeOut('fast',function(){
+			$('#'+newTxtId).fadeIn('fast');		
+		});
+		currTxtId = newTxtId;
 	});
 
 	$('#hVal1').attr('checked',true).button("refresh");
-	updateHFTab('hMap', 'ausg', 'stud', '€');
+	updateHFTab('hMap', 'stud', '1', '');
 	$('#hochschulen').data('loaded', true);
+
+//Diagrammlegende wird deaktiviert
+/*
 	$('#hLegend').text(
 		$('#hValue label[for='+$('#hValue input:checked').attr('id')+']').attr('title')
 	);
+*/
+
 } // loadHochschulenTab
 
 
+function loadArbeitsmarktTab() {
 
+	// +++ Blendet alle Teiltexte aus +++
+	$('#fTxtAll div').css({display:'none'});
 
+	tooltip4Text('#ttBIP2');
+	tooltip4Text('#ttBevoelkerungsschwund');
+	tooltip4Text('#ttErwerbstaetigeInFuE');
 
+	var qBfa = 'Bundesagentur für Arbeit'; 
+	var qStatAmt = 'Statistische Ämter des Bundes und der Länder Sachsen, Sachsen-Anhalt und Thüringen';
 
-function loadFinanzenTab() {
-	if ($('#finanzen').data('loaded')) return;
+	// +++ Texte bei Erst- und Wiedereintritt +++
+	var currButtonId,newButtonId,currTxtId,newTxtId
+	currButtonId = $('#fValue input[name=fValue]:checked').attr('id');
+	currTxtId = currButtonId.replace('Val','Txt');
+	$('#'+currTxtId).css({display:'block'});
+
+	// +++ Quellenangabe bei Erst- und Wiedereintritt +++
+	if(currButtonId == 'fVal1' || currButtonId == 'fVal2' || currButtonId == 'fVal5' || currButtonId == 'fVal4') {$('#aQuelle').text(qBfa)};
+	if(currButtonId == 'fVal7' || currButtonId == 'fVal8') {$('#aQuelle').text(qStatAmt)};
+
+	//console.log(currButtonId);
+
+	if ($('#arbeitsmarkt').data('loaded')) return;
+
 	// +++ Map +++
 	$('#fMap').data('map',Raphael($("#fMap")[0], 430, 325));
 
@@ -289,19 +327,38 @@ function loadFinanzenTab() {
 	$("#fValue div div").buttonset();
 	$('#fValue input').change(function() {
 		if (!this.checked) return; // should never happen
+
 		var values;
 		values = $('#fValue input[name=fValue]:checked').val();
 		values = values.split('/');
 		updateHFTab('fMap', values[0], values[1], values[2]);
+
+/*
 		$('#fLegend').text(
 			$('#fValue label[for='+$('#fValue input:checked').attr('id')+']').attr('title')
 		);
+*/
+		// +++ Texte bei Nutzung der Button +++
+		newButtonId = $('#fValue input[name=fValue]:checked').attr('id');
+		newTxtId = newButtonId.replace('Val','Txt');
+		$('#'+currTxtId).fadeOut('fast',function(){
+			$('#'+newTxtId).fadeIn('fast');		
+		});
+		currTxtId = newTxtId;
+
+		// +++ Quellenangabe bei Nutzung der Button +++
+		if(newButtonId == 'fVal1' || newButtonId == 'fVal2' || newButtonId == 'fVal5' || newButtonId == 'fVal4') {$('#aQuelle').text(qBfa)};
+		if(newButtonId == 'fVal7' || newButtonId == 'fVal8') {$('#aQuelle').text(qStatAmt)};
+
 	});
 
 	$('#fVal1').attr('checked',true).button("refresh");
-	updateHFTab('fMap', 'bip', 'ew', '€');
-	$('#finanzen').data('loaded', true);
+	updateHFTab('fMap', 'svpb', '1', '');
+	$('#arbeitsmarkt').data('loaded', true);
+/*
 	$('#fLegend').text(
 		$('#fValue label[for='+$('#fValue input:checked').attr('id')+']').attr('title')
 	);
-} // loadFinanzenTab
+*/
+
+} // loadArbeitsmarktTab
