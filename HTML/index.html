@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+	<head>
+		<meta charset="UTF-8" />
+		<title>MDR</title>
+		<link rel="shortcut icon" type="image/x-icon" href="http://www.mdr.de/resources/img/favicon.ico"/>
+		<style>
+			html { background-color:#2284c8; margin:0; padding:0; }
+			body { background-color:#fafafa; margin:10px; padding:0; height:900px; width:970px; }
+			h1 { font-family:Tahoma; color:#004e9e; padding:20px;}
+			iframe { }
+			div#navi { float:left; height:700px; width:170px; margin:0 10px; background-color: #2284c8; }
+		</style>
+	</head>
+	<body>
+		<h1><img src="http://www.mdr.de/resources/img/mdr_logo.gif" /></h1>
+
+		<div id="navi">
+		</div>
+
+		<!--
+			Dem iFrame können zwei Parameter per URL mitgegeben werden:
+			z.B. "frame.html#abiturienten-0"
+
+			Dabei werden zwei Parameter übergeben: "frame.html#a-b" 
+
+			Der Parameter a gibt an, welcher Reiter ausgewählt sein soll.
+		   Der Wert kann dabei sein
+
+			a = "schueler" - Schülerwettbewerbe (default)
+			a = "abiturienten" - Abiturienten
+			a = "hochschulen" - Hochschulen
+			a = "wanderung" - Wanderung
+			a = "finanzen" - Finanzen
+		
+			Der Parameter b gibt an, ob die Reiter-Tabs angezeigt werden sollen.
+			b = 0 - Reiter werden nicht angezeigt.     height = 600
+			b = 1 - Reiter werden angezeigt. (default) height = 620
+		-->
+
+		<iframe src="frame.html#schueler-1" width="768" height="620" border="0" frameborder="0"></iframe>
+	</body>
+</html>

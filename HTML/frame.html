@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" media="all" href="style/mdr/jquery-ui-1.9.0.custom.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="style/main.css" />
+<script type="text/javascript" src="scripts/geo.js"></script>
+<script type="text/javascript" src="scripts/database.js"></script>
+<script type="text/javascript" src="scripts/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="scripts/jquery-ui-1.9.0.custom.min.js"></script>
+<script type="text/javascript" src="scripts/raphael-min.js"></script>
+<script type="text/javascript" src="scripts/hochschulen-finanzen.js"></script>
+<script type="text/javascript" src="scripts/abiturienten-wettbewerbe-wanderung-studienanfaenger.js"></script>
+<script type="text/javascript" src="scripts/main.js"></script>
+
+</head>
+<body>
+<div id="tooltip"></div>
+
+
+<div id="tabs">
+	<ul>
+		<li><a href="#schueler">Schülerwettbewerbe</a></li>
+		<li><a href="#abiturienten">Abiturienten</a></li>
+		<li><a href="#studienanfaenger">Studienanfänger</a></li>
+		<li><a href="#hochschulen">Hochschulen</a></li>
+		<li><a href="#wanderung">Wanderung</a></li>
+		<li><a href="#finanzen">Finanzen</a></li>
+	</ul>
+	<div id="schueler" class="tab">
+		<div style="position:absolute; top:30px; left:400px; width:300px; height:400px;">
+			<h1>Wie erfolgreich sind unsere Schüler bei Wettbewerben?</h1>
+			<h2>Gewinner pro 1 Mio. Schüler von 2000-2010</h2>
+			<p>Die Wettbewerbe Jugend Forscht und die Mathematik-Olympiade werden bundesweit unter vergleichbaren Bedingungen ausgetragen. Auf der Karte dargestellt ist die Anzahl der Gewinner des jeweiligen Wettbewerbes pro eine Million Schüler. Mit vier Schülern bei Jugend Forscht und ebenso vielen in der Mathematik-Olympiade führt der Stadtstaat Bremen.</p>
+			<p>Fahren sie mit der Maus über die Länder, um die jeweiligen Quoten zu erfahren.</p>
+		</div>
+		<div id="sMap" style="position:absolute; left:10px; top:30px;"></div>
+
+		<form>
+			<div style="position:absolute; top:445px; left:400px;">
+				<div>
+					<input type="radio" id="sMathe" name="radio" checked="checked" />
+					<label style="display:block; width:300px;" for="sMathe">Mathematik-Olympiade</label>
+				</div>
+				<div>
+					<input type="radio" id="sJugend" name="radio" />
+					<label style="display:block; width:300px;" for="sJugend">Jugend Forscht</label>
+				</div>
+			</div>
+		</form>
+
+	</div><!-- schueler -->
+
+
+	<div id="abiturienten" class="tab">
+		<div style="position:absolute; top:20px; left:410px; width:300px; height:400px;">
+			<h1>Abiturienten</h1>
+			<h2>Quote von 2000-2010</h2>
+			<p>Die Karte zeigt den Anteil an Abiturienten des jeweiligen Jahrganges. Besonders hoch ist Hamburg mit 60% im Jahr 2010, als das <a href="http://de.wikipedia.org/wiki/Abitur_nach_Klasse_12#Geschichtlicher_Hintergrund_und_Einf.C3.BChrung" target="_new">Abitur nach Klasse 12</a> eingeführt wurde.</p>
+			<p>Verstellen Sie unten das Jahr und fahren mit der Maus über die Länder, um Details zu erfahren.</p>
+		</div>
+		<div id="aMap" style="position:absolute;left:10px;top:30px;"></div>
+		<div id="aBigYear" style="position:absolute; left:18px; top:20px; font-size:20px; color:#000;"></div>
+
+		<div id="aBrdmdr" style="position:absolute; top:385px; left:420px; width:300px; height:40px;">
+			<div>
+			<label for="aBrdmdrBrd" style="width:265px; margin-bottom:1px;">Deutschland</label>
+			<input name="brdmdr" type="radio" value="brd" id="aBrdmdrBrd" checked="checked" />
+			</div><div>
+			<label for="aBrdmdrMdr" style="width:265px;">MDR-Region</label>
+			<input name="brdmdr" type="radio" value="mdr" id="aBrdmdrMdr" />
+			</div>
+		</div>
+
+		<div id="aSlider">
+			<div style="position:absolute; top:495px; left:430px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:455px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:480px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:505px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:530px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:555px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:580px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:605px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:630px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:655px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:680px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:505px; left:415px; width:40px; height:13px;">2000</div>
+			<div style="position:absolute; top:505px; left:465px; width:40px; height:13px;">2002</div>
+			<div style="position:absolute; top:505px; left:515px; width:40px; height:13px;">2004</div>
+			<div style="position:absolute; top:505px; left:565px; width:40px; height:13px;">2006</div>
+			<div style="position:absolute; top:505px; left:615px; width:40px; height:13px;">2008</div>
+			<div style="position:absolute; top:505px; left:665px; width:40px; height:13px;">2010</div>
+
+			<form><div style="position:absolute; top:480px; left:430px; width:250px;" id="aSliderSlider"></div></form>
+		</div>
+
+		<div id="aButtons" style="-webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none;
+-moz-user-select: none; -user-select: none; user-select: none;">
+			<form>
+				<input style="position:absolute; top:480px; left:410px; width:40px; height:40px; font-weight:bold; font-size:150%; cursor:pointer;" type="button" id="aButtonsPrev" value="←" />
+				<div style="position:absolute; top:493px; left:450px; width:66px; text-align:center; font-size:16px; color:#aaa; cursor:pointer;" id="aButtonsYearPrev"></div>
+				<div style="position:absolute; top:493px; left:516px; width:67px; text-align:center; font-size:16px;" id="aButtonsYear"></div>
+				<div style="position:absolute; top:493px; left:583px; width:66px; text-align:center; font-size:16px; color:#aaa; cursor:pointer;" id="aButtonsYearNext"></div>
+				<input style="position:absolute; top:480px; left:650px; width:40px; height:40px; font-weight:bold; font-size:150%; cursor:pointer;" type="button" id="aButtonsNext" value="→" />
+			</form>
+		</div>
+	</div><!-- abiturienten -->
+
+
+	<div id="studienanfaenger" class="tab">
+		<div style="position:absolute; top:20px; left:410px; width:300px; height:400px;">
+			<h1>Studienanfänger</h1>
+			<h2>Quote von 2000-2010</h2>
+			<p>Die Karte zeigt den Anteil an Studienanfängern auf 1000 Einwohner.</p>
+			<p>Verstellen Sie unten das Jahr und fahren mit der Maus über die Länder, um Details zu erfahren.</p>
+		</div>
+		<div id="tMap" style="position:absolute;left:10px;top:30px;"></div>
+		<div id="tBigYear" style="position:absolute; left:18px; top:20px; font-size:20px; color:#000;"></div>
+
+		<div id="tSlider">
+			<div style="position:absolute; top:495px; left:430px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:455px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:480px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:505px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:530px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:555px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:580px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:605px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:630px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:655px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:495px; left:680px; width:2px; height:7px; background-color:#aaa;"></div>
+			<div style="position:absolute; top:505px; left:415px; width:40px; height:13px;">2000</div>
+			<div style="position:absolute; top:505px; left:465px; width:40px; height:13px;">2002</div>
+			<div style="position:absolute; top:505px; left:515px; width:40px; height:13px;">2004</div>
+			<div style="position:absolute; top:505px; left:565px; width:40px; height:13px;">2006</div>
+			<div style="position:absolute; top:505px; left:615px; width:40px; height:13px;">2008</div>
+			<div style="position:absolute; top:505px; left:665px; width:40px; height:13px;">2010</div>
+
+			<form><div style="position:absolute; top:480px; left:430px; width:250px;" id="tSliderSlider"></div></form>
+		</div>
+
+		<div id="tButtons" style="-webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none;
+-moz-user-select: none; -user-select: none; user-select: none;">
+			<form>
+				<input style="position:absolute; top:480px; left:410px; width:40px; height:40px; font-weight:bold; font-size:150%; cursor:pointer;" type="button" id="tButtonsPrev" value="←" />
+				<div style="position:absolute; top:493px; left:450px; width:66px; text-align:center; font-size:16px; color:#aaa; cursor:pointer;" id="tButtonsYearPrev"></div>
+				<div style="position:absolute; top:493px; left:516px; width:67px; text-align:center; font-size:16px;" id="tButtonsYear"></div>
+				<div style="position:absolute; top:493px; left:583px; width:66px; text-align:center; font-size:16px; color:#aaa; cursor:pointer;" id="tButtonsYearNext"></div>
+				<input style="position:absolute; top:480px; left:650px; width:40px; height:40px; font-weight:bold; font-size:150%; cursor:pointer;" type="button" id="tButtonsNext" value="→" />
+			</form>
+		</div>
+	</div><!-- studienanfaenger -->
+
+
+	<div id="hochschulen" class="tab">
+		<div style="position:absolute; top:20px; left:490px; width:220px; height:500px;">
+			<h1>Hochschulen</h1>
+			<h2>Kennzahlen von 2000-2010</h2>
+			<p>In der gesamten MDR-Region steigen die Absolventenzahlen. In Sachsen steigen die Drittmittel besonders stark.</p>
+			<p>Klicken Sie unten auf die verschiedenen Quotienten und fahren mit der Maus über die Kurven, um die genauen Größen zu erfahren.</p>
+		</div>
+
+		<div id="hMap" style="position:absolute; left:10px; top:20px;">
+		</div>
+
+		<div id="hLegend" style="position:absolute; top:355px; left:40px; width:420px; height:20px;" ></div>
+
+		<form id="hValue">
+			<div style="position:absolute; top:390px; left:35px;">
+				<div>
+					<input type="radio" value="ausg/stud/€" id="hVal1" name="hValue" checked="checked" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal1" title="Grundmittel in Euro pro Studierender">Grundmittel/Studierende</label>
+				</div>
+				<div>
+					<input type="radio" value="dritt/stud/€" id="hVal3" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal3" title="Drittmittel in Euro pro Studierender">Drittmittel/Studierende</label>
+				</div>
+				<div>
+					<input type="radio" value="stud/ew/%" id="hVal5" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal5" title="Studierende pro Einwohner">Studierende/Einwohner</label>
+				</div>
+				<div>
+					<input type="radio" value="ausg/1/€" id="hVal7" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal7" title="Grundmittel in Euro">Grundmittel</label>
+				</div>
+				<div>
+					<input type="radio" value="stud/1/" id="hVal9" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal9" title="Anzahl Studierende">Studierende</label>
+				</div>
+
+			</div>
+			<div style="position:absolute; top:390px; left:250px;">
+				<div>
+					<input type="radio" value="ausg/bip/%" id="hVal2" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal2" title="Grundmittel für Studierende als Anteil am Bruttoinlandsprodukt">Grundmittel/BiP</label>
+				</div>
+				<div>
+					<input type="radio" value="dritt/bip/%" id="hVal4" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal4" title="Drittmittel als Anteil am Bruttoinlandsprodukt">Drittmittel/BiP</label>
+				</div>
+				<div>
+					<input type="radio" value="absolv/ew/%" id="hVal6" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal6" title="Absolventen pro Einwohner">Absolventen/Einwohner</label>
+				</div>
+				<div>
+					<input type="radio" value="dritt/1/€" id="hVal8" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal8" title="Drittmittel in Euro">Drittmittel</label>
+				</div>
+				<div>
+					<input type="radio" value="absolv/1/" id="hVal10" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal10" title="Anzahl Absolventen">Absolventen</label>
+				</div>
+
+			</div>
+		</form>
+
+		<!-- Legende -->
+		<div style="width:190px; height:70px; position:absolute; left:490px; top:485px;">
+			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#219511; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Sachsen</p>
+			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#B38910; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Sachsen-Anhalt</p>
+			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#A10F0B; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Thüringen</p>
+<!--			<p style="padding:0; margin:0;        "><span style="width:13px; height:13px; display:inline-block; background-color:#000000; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> MDR-Region</p> -->
+		</div>
+	</div><!-- hochschulen -->
+
+
+	<div id="wanderung" class="tab">
+		<div style="position:absolute; top:20px; left:410px; width:300px; height:400px;">
+			<h1>Wanderung</h1>
+			<h2>Umzüge der Absolventen</h2>
+			<p>Die Farben der Karte zeigen, in welche Länder die meisten Hochschul-Absolventen aus der MDR-Region gewandert sind. Ein dunkleres Blau bedeutet mehr Absolventen pro Einwohner des jeweiligen Landes.</p>
+			<p>Die Zahlen sind eine grobe Hochrechnung auf Basis der Analyse von Sozialen Netzwerken und Daten des Statistischen Bundesamtes. Sie zeigen die Verteilung und Wanderungsbewegung aller Akademiker in Deutschland.</p>
+			<p>Fahren Sie mit der Maus über die Länder, um die absoluten Zahlen zu erfahren.</p>
+		</div>
+		<div id="wMap" style="position:absolute;left:10px;top:30px;"></div>
+
+	</div><!-- wanderung -->
+
+
+	<div id="finanzen" class="tab">
+		<div style="position:absolute; top:20px; left:490px; width:220px; height:500px;">
+			<h1>Finanzen</h1>
+			<h2>Kennzahlen von 2000-2010</h2>
+			<p>Die Quote der Arbeitslosen sinkt in der gesamten MDR-Region seit 2005.</p>
+			<p>Klicken Sie unten auf die verschiedenen Quotienten und fahren mit der Maus über die Kurven, um die genauen Größen zu erfahren.</p>
+		</div>
+
+		<div id="fMap" style="position:absolute; left:10px; top:20px;">
+		</div>
+
+		<div id="fLegend" style="position:absolute; top:355px; left:40px; width:420px; height:20px;" ></div>
+
+		<form id="fValue">
+			<div style="position:absolute; top:400px; left:35px;">
+				<div>
+					<input type="radio" value="bip/ew/€" id="fVal1" name="fValue" checked="checked" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal1" title="Bruttoinlandsprodukt in Euro pro Einwohner">BIP/Einwohner</label>
+				</div>
+				<div>
+					<input type="radio" value="fue/ew/%" id="fVal3" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal3" title="Personen in Forschung und Entwicklung pro Einwohner">FuE/Einwohner</label>
+				</div>
+				<div>
+					<input type="radio" value="e400/1/" id="fVal5" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal5" title="Ausschließlich geringfügig entlohnte Beschäftigte (400€)">400€</label>
+				</div>
+				<div>
+					<input type="radio" value="betr/1/" id="fVal7" name="fValue" />
+					<label style="display:block; width:190px;" for="fVal7" title="Betriebe mit Kurzarbeit">Kurzarbeit Betriebe</label>
+				</div>
+			</div>
+
+			<div style="position:absolute; top:400px; left:250px;">
+				<div>
+					<input type="radio" value="svpb/ew/%" id="fVal2" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal2" title="Sozialversicherungspflichtige Beschäftigte pro Einwohner">SvpB/Einwohner</label>
+				</div>
+				<div>
+					<input type="radio" value="al/ew/%" id="fVal4" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal4" title="Arbeitslose pro Einwohner">Arbeitslose/Einwohner</label>
+				</div>
+				<div>
+					<input type="radio" value="e400Frau/1/" id="fVal6" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal6" title="Ausschließlich geringfügig entlohnt beschäftigte Frauen">400€ Frauen</label>
+				</div>
+				<div>
+					<input type="radio" value="kurz/1/" id="fVal8" name="fValue" />
+					<label style="display:block; width:190px;" for="fVal8" title="Kurzarbeiter">Kurzarbeiter</label>
+				</div>
+			</div>
+		</form>
+
+		<!-- Legende -->
+		<div style="width:190px; height:70px; position:absolute; left:490px; top:475px;">
+			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#219511; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Sachsen</p>
+			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#B38910; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Sachsen-Anhalt</p>
+			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#A10F0B; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Thüringen</p>
+			<!-- <p style="padding:0; margin:0;        "><span style="width:13px; height:13px; display:inline-block; background-color:#000000; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> MDR-Region</p> -->
+		</div>
+	</div><!-- finanzen -->
+</div>
+
+
+</body>
+</html>

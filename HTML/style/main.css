@@ -1,0 +1,74 @@
+/*
+
+jQueryUI style from:
+http://jqueryui.com/themeroller/#ffDefault=Verdana%2CArial%2Csans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=5px&bgColorHeader=4184d2&bgTextureHeader=12_gloss_wave.png&bgImgOpacityHeader=75&borderColorHeader=48a2dc&fcHeader=eaf5f7&iconColorHeader=d8e7f3&bgColorContent=f6f5f2&bgTextureContent=06_inset_hard.png&bgImgOpacityContent=100&borderColorContent=a6c9e2&fcContent=222222&iconColorContent=48a2dc&bgColorDefault=808080&bgTextureDefault=03_highlight_soft.png&bgImgOpacityDefault=45&borderColorDefault=999&fcDefault=ffffff&iconColorDefault=ddd&bgColorHover=666&bgTextureHover=03_highlight_soft.png&bgImgOpacityHover=75&borderColorHover=999&fcHover=fff&iconColorHover=ddd&bgColorActive=004e9e&bgTextureActive=04_highlight_hard.png&bgImgOpacityActive=50&borderColorActive=2966ae&fcActive=ffffff&iconColorActive=fff&bgColorHighlight=758dff&bgTextureHighlight=02_glass.png&bgImgOpacityHighlight=55&borderColorHighlight=fcd113&fcHighlight=915608&iconColorHighlight=f7a50d&bgColorError=e14f1c&bgTextureError=12_gloss_wave.png&bgImgOpacityError=45&borderColorError=cd0a0a&fcError=ffffff&iconColorError=fcd113&bgColorOverlay=aaaaaa&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=75&opacityOverlay=30&bgColorShadow=999999&bgTextureShadow=01_flat.png&bgImgOpacityShadow=55&opacityShadow=45&thicknessShadow=0px&offsetTopShadow=5px&offsetLeftShadow=5px&cornerRadiusShadow=5px
+
+*/
+
+* {
+	font-family:Verdana,Arial,sans-serif;
+}
+
+body,html {
+	margin:0;
+	padding:0;
+	width:768px;
+	font-size:12px;
+	height:600px; /* height without navi */
+}
+
+.tab {
+	position:relative;
+}
+
+h1 {
+  font-size:14px;
+	font-weight:bold;
+}
+h2 {
+	font-size:14px;
+	font-weight:normal;
+}
+p {
+	color:#555;
+	margin:7px 0;
+}
+p a {
+	color:0;
+	text-decoration:none;
+}
+p a:hover, p a:active, p a:focus {
+	text-decoration:underline;
+}
+
+#tooltip {
+	position:absolute;
+	left:0;
+	top:0;
+	background-color:#eee;
+	border:1px solid #777;
+	opacity:0;
+	display:none;
+	z-index:100;
+	padding:0 10px;
+}
+
+#tooltip td {
+	padding:3px 7px;
+}
+
+#tooltip p {
+	color:black;
+}
+
+#tooltip table {
+	margin:5px 0;
+}
+
+#tabs {
+	background-image: none;
+}
+
+#sMap, #aMap, #wMap {
+	background: url('shadow.png') no-repeat -2px 12px;
+}
