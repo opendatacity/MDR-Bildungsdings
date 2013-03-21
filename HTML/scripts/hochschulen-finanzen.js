@@ -35,83 +35,81 @@ function updateHFTab(mapId, num1, num2, unit) {
 		'Thüringen': [],
 		'Deutschland': []
 	};
-	var maxPermill = 0;
-	var maxPermillStringLength = 0;
+	var maxValue = 0;
 
 	$.each(database.hochschulen, function(index, value) {
-		if (num2=='1') var num = value[num1];
-			else var num = value[num1]/value[num2];
-			data[value.land].push(num);
-		if (value.land!="Deutschland") { // <-- Deutschland disabled
-			if (num*1000 > maxPermill) maxPermill = num*1000;
+		var num;
+		switch (num2) {
+			case '1': num = value[num1]; break;
+			case '100': num = value[num1]/100; break;
+			default: num = value[num1]/value[num2];
+		}
+		if (unit == '%') num *= 100;
+		data[value.land].push(num);
+		if (value.land != 'Deutschland') { // <-- Deutschland disabled
+			if (num > maxValue) maxValue = num;
 		}
 	});
 
 
-	maxPermill = Math.floor(maxPermill);
-	maxPermillStringLength = maxPermill.toString().length;
+	var maxValueLength = Math.ceil(Math.log(maxValue)/Math.LN10);
+	var maxValueFirstDigit = Math.floor(maxValue/Math.pow(10, maxValueLength-1));
 
 	var precision = 0;
+	var factor = Math.pow(10, maxValueLength-1);
+	var captions;
 
-	switch (maxPermill.toString()[0]) { // first digit of max
-		case '1':
-			var caption = [2,1.5,1,0.5,0];
-			maxPermill = 2*Math.pow(10, maxPermillStringLength-1);
+	switch (maxValueFirstDigit) { // first digit of max
+		case 1:
+			captions = [2,1.5,1,0.5,0];
 			precision = 1;
 			break;
-		case '2':
-			var caption = [3,2,1,0];
-			maxPermill = 3*Math.pow(10, maxPermillStringLength-1);
+		case 2:
+			captions = [3,2,1,0];
 			break;
-		case '3':
-			var caption = [4,3,2,1,0];
-			maxPermill = 4*Math.pow(10, maxPermillStringLength-1);
+		case 3:
+			captions = [4,3,2,1,0];
 			break;
-		case '4':
-		case '5':
-			var caption = [6,4,2,0];
-			maxPermill = 6*Math.pow(10, maxPermillStringLength-1);
+		case 4:
+		case 5:
+			captions = [6,4,2,0];
 			break;
-		case '6':
-		case '7':
-			var caption = [8,6,4,2,0];
-			maxPermill = 8*Math.pow(10, maxPermillStringLength-1);
+		case 6:
+		case 7:
+			captions = [8,6,4,2,0];
 			break;
-		case '8':
-		case '9':
-			var caption = [10,7.5,5,2.5,0];
-			maxPermill = 1*Math.pow(10, maxPermillStringLength);
+		case 8:
+		case 9:
+			captions = [10,7.5,5,2.5,0];
 			precision = 1;
 			break;
 	}
+	
+	maxValue = captions[0]*factor;
 
-	for (var i = 0; i < caption.length; i++) {
-		if (caption[i] == 0) precision = 0; // last value always 0 and not 0,0
-		if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 12)) || (maxPermillStringLength > 12)) { // Billions
-			caption[i] = (caption[i] * Math.pow(10, maxPermillStringLength - 13));
-			caption[i] = formatNumber(caption[i], 1);
-			caption[i] = caption[i] + ' Mrd';
-		} else if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 9)) || (maxPermillStringLength > 9)) { // Millions
-			caption[i] = (caption[i] * Math.pow(10, maxPermillStringLength - 10));
-			caption[i] = formatNumber(caption[i], (maxPermill.toString()[0] > 2 ? 0 : 1));
-			caption[i] = caption[i]+' Mio';
-		} else if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 5)) || (maxPermillStringLength > 6)) { // Hundreds
-			caption[i] = (caption[i] * Math.pow(10, maxPermillStringLength - 4));
-			caption[i] = formatNumber(caption[i], 0);
-		} else if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 3)) || (maxPermillStringLength > 4)) { // 1
-			caption[i] = (caption[i] * Math.pow(10, maxPermillStringLength - 4));
-			caption[i] = formatNumber(caption[i], precision);
-		} else if (((maxPermill.toString()[0] > 2) && (maxPermillStringLength > 1)) || (maxPermillStringLength > 2)) { // Permill
-			caption[i] = (caption[i] * Math.pow(10, maxPermillStringLength - 2));
-			caption[i] = formatNumber(caption[i], precision);
-			caption[i] = caption[i];
+	var suffix = '';
+	if (maxValueLength > 9) {
+		suffix = ' Mrd';
+		factor /= 1e9;
+	} else if (maxValueLength > 6) {
+		suffix = ' Mio'
+		factor /= 1e6;
+	}
+	if (unit != '') suffix += ' ' + unit;
+
+	if (factor > 1) {
+		precision = 0;
+	} else {
+		precision -= Math.floor(Math.log(factor)/Math.LN10);
+	}
+
+	for (var i = 0; i < captions.length; i++) {
+		if (captions[i] == 0) {
+			captions[i] = '0';
 		} else {
-			if (i == 0 && maxPermillStringLength == 1) precision++;
-			caption[i] = (caption[i]*Math.pow(10, maxPermillStringLength - 2));
-			caption[i] = formatNumber(caption[i], precision);
-			caption[i] = caption[i];
+			captions[i] = formatNumber(captions[i]*factor, precision);
 		}
-		caption[i] += ' ' + unit;
+		captions[i] += suffix;
 	}
 
 
@@ -120,9 +118,9 @@ function updateHFTab(mapId, num1, num2, unit) {
 		map.path('M'+(i*35+65.5)+' 300.5L'+(i*35+65.5)+' 306.5');
 		if (Math.round(i/2) == (i/2)) map.text(i*35+65.5, 317.5, i+2000);
 	}
-	for (var i = 0; i < caption.length; i++) { // vertical
-		map.path('M60.5 '+(Math.round(i*285/(caption.length-1))+15.5)+'L65.5 '+(Math.round(i*285/(caption.length-1))+15.5));
-		map.text(57.5, i*285/(caption.length-1) + 15.5, caption[i]).attr({'text-anchor': 'end'});
+	for (var i = 0; i < captions.length; i++) { // vertical
+		map.path('M60.5 '+(Math.round(i*285/(captions.length-1))+15.5)+'L65.5 '+(Math.round(i*285/(captions.length-1))+15.5));
+		map.text(57.5, i*285/(captions.length-1) + 15.5, captions[i]).attr({'text-anchor': 'end'});
 	}
 	map.path('M65.5 300.5L415.5 300.5'); // horizontal line
 	map.path('M65.5 15.5L65.5 300.5'); // vertical line
@@ -141,7 +139,7 @@ function updateHFTab(mapId, num1, num2, unit) {
 
 		var graph = [];
 		for (var i = 0; i < 11; i++) {
-			graph.push([(65+i*35), Math.round(300-(value[i]/maxPermill*1000)*285)]);
+			graph.push([(65+i*35), Math.round(300-(value[i]/maxValue)*285)]);
 		}
 
 		if (index!="Deutschland") {
@@ -149,14 +147,16 @@ function updateHFTab(mapId, num1, num2, unit) {
 		}
 
 		for (var i = 0; i < 11; i++) { // dots
-			if (maxPermillStringLength > 4) // 21.452
-				var dataVar = formatNumber(value[i], 0);
-			else if (maxPermillStringLength > 2) // 26,7
-				var dataVar = formatNumber(value[i]*100, 1);
-			else // 3,24
-				var dataVar = formatNumber(value[i]*100, 2);
+			var dataVar = value[i];
+			if (maxValue < 10) {
+				dataVar = formatNumber(value[i], 2);
+			} else if (maxValue < 100) {
+				dataVar = formatNumber(value[i], 1);
+			} else {
+				dataVar = formatNumber(value[i], 0);
+			}
 
-			if (index!="Deutschland") {
+			if (index != "Deutschland") {
 				r = map.circle(graph[i][0], graph[i][1], 3);
 				r.attr({'fill':color, 'stroke-opacity':0.001, 'stroke-width':3});
 
@@ -164,7 +164,7 @@ function updateHFTab(mapId, num1, num2, unit) {
 				$(r).data('year', i+2000);
 			}
 
-			if (index!="Deutschland") {
+			if (index != "Deutschland") {
 				var dotDescription = {
 					x: graph[i][0],
 					y: graph[i][1],
