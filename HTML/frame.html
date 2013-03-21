@@ -24,19 +24,48 @@
 		<li><a href="#abiturienten">Abiturienten</a></li>
 		<li><a href="#studienanfaenger">Studienanfänger</a></li>
 		<li><a href="#hochschulen">Hochschulen</a></li>
-		<li><a href="#wanderung">Wanderung</a></li>
-		<li><a href="#finanzen">Finanzen</a></li>
+		<li><a href="#arbeitsmarkt">Arbeitsmarkt</a></li>
+		<li><a href="#wanderung">Absolventenwanderung</a></li>
 	</ul>
+
+
 	<div id="schueler" class="tab">
+
 		<div style="position:absolute; top:30px; left:400px; width:300px; height:400px;">
-			<h1>Wie erfolgreich sind unsere Schüler bei Wettbewerben?</h1>
-			<h2>Gewinner pro 1 Mio. Schüler von 2000-2010</h2>
-			<p>Die Wettbewerbe Jugend Forscht und die Mathematik-Olympiade werden bundesweit unter vergleichbaren Bedingungen ausgetragen. Auf der Karte dargestellt ist die Anzahl der Gewinner des jeweiligen Wettbewerbes pro eine Million Schüler. Mit vier Schülern bei Jugend Forscht und ebenso vielen in der Mathematik-Olympiade führt der Stadtstaat Bremen.</p>
-			<p>Fahren sie mit der Maus über die Länder, um die jeweiligen Quoten zu erfahren.</p>
+
+			<div id="schuelerTxtAll">
+				<div id="schuelerTxtMathe">
+					<h1>Früh übt sich...</h1>
+					<h2>Gewinner Mathematik-Olympiade (2000 bis 2010)</h2>
+
+					<p>Für die jeweilige Anzahl pro Bundesland fahren Sie mit der Maus über 
+					die Karte. Sie sehen die Gewin- ner der 1. - 3. Preise und der Anerkennungspreise.</p>
+					
+					<p>Keine andere Wissenschaft durchdringt und beeinflusst so stark 
+					sämtliche Lebens- und Arbeitsbereiche wie die Mathematik.</p>
+					
+					<p>Auch deshalb stellen sich jedes Jahr pro Bundesland rund 10 bis 15
+					ausgewählte Schülerinnen und Schüler der Klassenstufen 8 bis 13 in der Bundesrunde den 
+					<a href="dokumente/mathematik-olympiaden.pdf" target="_blank"><u>kniffligen Fragen der Mathe-Olympiade (PDF)</u></a>. 
+					Besonders erfolgreich sind dabei Kinder und Jugendliche aus Sachsen, Sachsen-Anhalt und Thüringen.</p>
+					
+					<p>Neben der nationalen Mathematik-Olympiade gibt es sogar einen 
+					<span class="text-mit-tt" id="ttIntMatheOlympiade" title="Die Internationale Mathematik-Olympiade ist die Mathematik-Weltmeisterschaft für Schüler/innen und findet jährlich in einem anderen Land statt. Bis zu 100 Länder aus allen Kontinenten nehmen daran teil.">internationalen Wettbewerb</span>. Deutschland erreichte dabei im Jahr 2011 Platz elf - im Jahr 2012 Platz 31. In den Jahren 2000 – 2010 war 
+					Deutschland hingegen gleich vier Mal unter den zehn Besten der Welt.</p>
+				</div>
+				<div id="schuelerTxtJugend">
+					<h1>... wer ein Forscher werden will </h1>
+					<h2>Gewinner "Jugend forscht" (2000 bis 2010)</h2>
+						<p>Für die jeweiligen Preisträger pro Bundesland fahren Sie mit der Maus über die Karte.</p>
+						<p>Naturwissenschaften und Technik stehen für Innovation und Modernisierung in allen Lebensbereichen: So entwickelten zwei Schüler der Landesschule Pforta Naumburg in Sachsen-Anhalt eine innovative Methode zur gezielten Suche nach Krankheitserregern. Dafür gewannen sie im Jahr 2012 den Sonderpreis des Bundespräsidenten für außergewöhnliche Arbeit bei 
+							<span class="text-mit-tt" id="ttJugendForscht" title="Der Wettbewerb Jugend forscht ist einer der größten Jugendwettbewerbe Europas im Bereich Naturwissenschaften und Technik. Zum großen Finale treten jedes Jahr die Besten der 16 Bundesländer gegeneinander an. Besonders erfolgreich sind seit Jahren Bremen, Saarland, Berlin und Sachsen-Anhalt.">"Jugend forscht"</span>.</p>
+						<p>Auch Schüler aus Sachsen und Thüringen forschen erfolgreich: Ein Schüler aus Chemnitz entwickelte ein Programm, mit dem er einen lichtschnellen Flug durchs Weltall und über die Autobahn simulierte. Ein Schüler aus Jena entdeckte Wirkstoffe in Fliegenpuppen, die gezielt gegen Erkrankungen durch Mikroorganismen eingesetzt werden könnten.</p>
+				</div>
+			</div>
 		</div>
 		<div id="sMap" style="position:absolute; left:10px; top:30px;"></div>
 
-		<form>
+		<form id="matheJugendForscht">
 			<div style="position:absolute; top:445px; left:400px;">
 				<div>
 					<input type="radio" id="sMathe" name="radio" checked="checked" />
@@ -49,20 +78,40 @@
 			</div>
 		</form>
 
+		<div class="quellen">
+			<h1>Quellen</h1>
+			<p>Quelle: <span id="schuelerQuelle"></span></p>
+			<p>Umsetzung: OpenDataCity/MITTELDEUTSCHER RUNDFUNK</p>
+		</div>
 	</div><!-- schueler -->
 
-
 	<div id="abiturienten" class="tab">
-		<div style="position:absolute; top:20px; left:410px; width:300px; height:400px;">
-			<h1>Abiturienten</h1>
-			<h2>Quote von 2000-2010</h2>
-			<p>Die Karte zeigt den Anteil an Abiturienten des jeweiligen Jahrganges. Besonders hoch ist Hamburg mit 60% im Jahr 2010, als das <a href="http://de.wikipedia.org/wiki/Abitur_nach_Klasse_12#Geschichtlicher_Hintergrund_und_Einf.C3.BChrung" target="_new">Abitur nach Klasse 12</a> eingeführt wurde.</p>
-			<p>Verstellen Sie unten das Jahr und fahren mit der Maus über die Länder, um Details zu erfahren.</p>
+		<div style="position:absolute; top:20px; left:410px; width:310px; height:400px;">
+
+			<div id="abiTxtAll">
+				<div id="abiTxtBRD">
+					<h1>Mit dem Abi zum Studium</h1>
+					<h2>Anteil der Abiturienten an der Gesamtschülerzahl (2000 – 2010)</h2>
+					<p>Wählen Sie mit der Maus ein Jahr auf der Zeitleiste und fahren Sie über die Bundesländer, um Details zu erfahren.</p>
+					<p>In der MDR-Region haben zwischen den Jahren 2000 und 2010 immer mehr Schüler das Abitur abgelegt. So stieg der Anteil der Abiturienten an der Gesamtschülerzahl in Thüringen um mehr als acht, in Sachsen und in Sachsen-Anhalt um jeweils vier Prozent.</p>
+					<p>Info: Einige Bundesländer wechselten in dieser Zeit von 13 Schuljahren auf 12 Schuljahre, daraus ergeben sich 
+						<span class="text-mit-tt" id="ttDoppelterAbiJahrgang" title="Einen doppelten Abiturjahrgang hatten in den jeweiligen Jahren folgende Länder: Hamburg 2010, Saarland 2009, Mecklenburg-Vorpommern 2008 und Sachsen-Anhalt 2007.">doppelte Abiturjahrgänge</span>. Im Jahr 2001 legten in Mecklenburg-Vorpommern und Sachsen-Anhalt nur wenige Schüler das Abitur ab, weil das 13. Schuljahr eingeführt wurde und damit ein Abiturjahrgang ausfiel.</p>
+				</div>
+				<div id="abiTxtMDR">
+					<h1>Mit dem Abi zum Studium in der MDR-Region</h1>
+					<h2>Anteil der Abiturienten an der Gesamtschülerzahl in der MDR-Region (2000 – 2010)</h2>
+					<p>Wählen Sie mit der Maus ein Jahr auf der Zeitleiste und fahren Sie über die Landkreise, um Details zu erfahren.</p>
+					<p>Schule ist nicht gleich Schule! Nicht nur das Bildungssystem des Bundeslandes ist entscheidend, sondern auch der Wohnort – denn das Gefälle zwischen Stadt und Land ist groß: Während im ländlichen Raum meist der Anteil der Abiturienten an der Gesamtschülerzahl unterdurchschnittlich ausfiel, legten in den Städten wie Magdeburg, Halle/Saale, Erfurt, Jena, Weimar, Dresden, Leipzig und Chemnitz überdurchschnittlich viele Schüler ihr Abitur ab. Eine Ausnahme von der Regel ist zum Beispiel das Eichsfeld. In diesem Landkreis hat sich die Abiturientenquote zuletzt überdurchschnittlich entwickelt.</p>
+				</div>
+			</div>
+
 		</div>
 		<div id="aMap" style="position:absolute;left:10px;top:30px;"></div>
+		<div id="aMdrMap" style="position:absolute;left:10px;top:30px;"></div>
 		<div id="aBigYear" style="position:absolute; left:18px; top:20px; font-size:20px; color:#000;"></div>
 
-		<div id="aBrdmdr" style="position:absolute; top:385px; left:420px; width:300px; height:40px;">
+		<div style="position:absolute; top:400px; left:420px; width:300px; height:40px;">
+			<form  id="aBrdmdr">
 			<div>
 			<label for="aBrdmdrBrd" style="width:265px; margin-bottom:1px;">Deutschland</label>
 			<input name="brdmdr" type="radio" value="brd" id="aBrdmdrBrd" checked="checked" />
@@ -70,6 +119,7 @@
 			<label for="aBrdmdrMdr" style="width:265px;">MDR-Region</label>
 			<input name="brdmdr" type="radio" value="mdr" id="aBrdmdrMdr" />
 			</div>
+		</form>
 		</div>
 
 		<div id="aSlider">
@@ -104,15 +154,21 @@
 				<input style="position:absolute; top:480px; left:650px; width:40px; height:40px; font-weight:bold; font-size:150%; cursor:pointer;" type="button" id="aButtonsNext" value="→" />
 			</form>
 		</div>
+
+		<div class="quellen">
+			<h1>Quellen</h1>
+			<p>Quelle: Statistische Ämter des Bundes und der Länder Sachsen, Sachsen-Anhalt und Thüringen</p>
+			<p>Umsetzung: OpenDataCity/MITTELDEUTSCHER RUNDFUNK</p>
+		</div>
 	</div><!-- abiturienten -->
 
 
 	<div id="studienanfaenger" class="tab">
 		<div style="position:absolute; top:20px; left:410px; width:300px; height:400px;">
-			<h1>Studienanfänger</h1>
-			<h2>Quote von 2000-2010</h2>
-			<p>Die Karte zeigt den Anteil an Studienanfängern auf 1000 Einwohner.</p>
-			<p>Verstellen Sie unten das Jahr und fahren mit der Maus über die Länder, um Details zu erfahren.</p>
+			<h1>Mit dem Studium zum Traumjob</h1>
+			<h2>Studienanfänger pro 1.000 Einwohner (2000 – 2010)</h2>
+			<p>Wählen Sie mit der Maus ein Jahr an der Zeitleiste und fahren Sie über die Bundesländer, um Details zu erfahren.</p>
+			<p>Studium, Lehre oder Ausbildung: Immer mehr Abiturienten entscheiden sich für ein Studium. Zwischen 2000 und 2010 stieg der Anteil der Studienanfänger an der Gesamtbevölkerung sowohl im ganzen Land als auch in Sachsen, Sachsen-Anhalt und in Thüringen. Für junge Erwachsene scheint folglich nicht nur das Abitur, sondern auch das Studium immer attraktiver zu werden. </p>
 		</div>
 		<div id="tMap" style="position:absolute;left:10px;top:30px;"></div>
 		<div id="tBigYear" style="position:absolute; left:18px; top:20px; font-size:20px; color:#000;"></div>
@@ -149,157 +205,309 @@
 				<input style="position:absolute; top:480px; left:650px; width:40px; height:40px; font-weight:bold; font-size:150%; cursor:pointer;" type="button" id="tButtonsNext" value="→" />
 			</form>
 		</div>
+
+		<div class="quellen">
+			<h1>Quellen</h1>
+			<p>Quelle: Statistische Ämter des Bundes und der Länder Sachsen, Sachsen-Anhalt und Thüringen</p>
+			<p>Umsetzung: OpenDataCity/MITTELDEUTSCHER RUNDFUNK</p>
+		</div>
 	</div><!-- studienanfaenger -->
 
 
 	<div id="hochschulen" class="tab">
 		<div style="position:absolute; top:20px; left:490px; width:220px; height:500px;">
-			<h1>Hochschulen</h1>
-			<h2>Kennzahlen von 2000-2010</h2>
-			<p>In der gesamten MDR-Region steigen die Absolventenzahlen. In Sachsen steigen die Drittmittel besonders stark.</p>
-			<p>Klicken Sie unten auf die verschiedenen Quotienten und fahren mit der Maus über die Kurven, um die genauen Größen zu erfahren.</p>
+
+			<div id="hTxtAll">
+				<div id="hTxt1">
+					<h1>Wer hoch hinaus will…</h1>
+					<h2>Anzahl der Studenten (2000 – 2010)</h2>
+					<p>Immer weniger Studenten brechen ihr Studium ab. Oder: Immer mehr Studenten machen mehrere Abschlüsse, zum Beispiel einen Bachelor und einen Master. Beide Vermutungen liegen nahe, wenn man die Studentenzahlen und die Absolventenzahlen im Vergleich betrachtet. Denn obwohl die Studentenzahlen seit Jahren nur leicht gestiegen sind, erhöhten sich die Absolventenzahlen deutlich und dies vor dem Hintergrund der stetig sinkenden 
+						<span class="text-mit-tt" id="ttBevoelkerungszahl" title="Zwischen 2000 und 2010 sank in Sachsen-Anhalt die Anzahl der Bevölkerung um rund 10,7 %, in Thüringen um rund 8,1 % und in Sachsen um rund 6,2 %.">Bevölkerungszahl</span> in der MDR-Region.</p>
+					<p>Übrigens: Bei den Studenten in 
+						<span class="text-mit-tt" id="ttStudentenSachsenAnhalt" title="Im Jahr 2010 gab es in Sachsen-Anhalt rund 5.400 BWL-Studenten und rund 3.200 Medizinstudenten. Insgesamt studierten in Sachsen-Anhalt im Jahr 2010 rund 53.500 Studenten.">Sachsen-Anhalt</span> und in 
+						<span class="text-mit-tt" id="ttStudentenThueringen" title="Im Jahr 2010 gab es in Thüringen rund 2.700 BWL-Studenten und rund 1.800 Medizinstudenten. Insgesamt studierten in Thüringen im Jahr 2010 rund 52.500 Studenten.">Thüringen</span> waren in den Jahren 2000 bis 2010 die Fachgruppen Betriebwirtschaftslehre (BWL) und Medizin besonders beliebt. In 
+						<span class="text-mit-tt" id="ttStudentenSachsen" title="Im Jahr 2010 gab es in Sachsen rund 12.800 Studenten für Maschinenbau/Verfahrenstechnik, rund 12.500 Studenten der Wirtschaftswissenschaften und rund 5.500 Informatik-Studenten. Insgesamt studierten in Sachsen im Jahr 2010 rund 106.000 Studenten.">Sachsen</span> studierten die meisten Studenten Maschinenbau/Verfahrenstechnik und Wirtschaftswissenschaften.</p>
+				</div>
+
+
+	
+				<div id="hTxt2">
+					<h1>… schließt sein Studium ab</h1>
+					<h2>Anzahl der Absolventen (2000 – 2010)</h2>
+					<p>Trotz gleichbleibender Studentenzahl ist zwischen 2000 und 2010 die Anzahl der Absolventen in Sachsen, Sachsen-Anhalt und Thüringen fortwährend angestiegen. Besonders Thüringen hebt sich hervor. Auch in Sachsen und Sachsen-Anhalt nahm die Anzahl der Absolventen stetig zu.</p>
+					<p>Übrigens: In 
+						<span class="text-mit-tt" id="ttAbsolventenSachsenAnhalt" title="Im Jahr 2010 schlossen in Sachsen-Anhalt rund 990 Studenten ein BWL-Studium ab und rund 500 Studenten ein Medizin-Studium. Insgesamt verließen im Jahr 2010 in Sachsen-Anhalt rund 8.000 Studenten ihre Hochschulen mit einem Abschluss.">Sachsen-Anhalt</span> und in 
+						<span class="text-mit-tt" id="ttAbsolventenThueringen" title="Im Jahr 2010 schlossen in Thüringen rund 400 Studenten ein BWL-Studium ab und rund 400 Studenten ein Medizin-Studium. Insgesamt verließen im Jahr 2010 in Thüringen rund 10.000 Studenten ihre Hochschulen mit einem Abschluss.">Thüringen</span> schlossen in den Jahren 2000 bis 2010 besonders viele Studenten ein Studium der Betriebswirtschaftslehre (BWL) oder ein Medizinstudium ab. Die meisten 
+						<span class="text-mit-tt" id="ttAbsolventenSachsen" title="Im Jahr 2010 schlossen in Sachsen rund 2.200 Studium der Wirtschaftswissenschaften und rund 1.600 Studenten ein Maschinenbau/ Verfahrenstechnik-Studium ab. Insgesamt verließen im Jahr 2010 in Sachsen rund 17.500 Studenten ihre Hochschulen mit einem Abschluss.">sächsischen Absolventen</span> gab es in den Fachgruppen Wirtschaftswissenschaften und Maschinenbau/Verfahrenstechnik. </p>
+				</div>
+
+				<div id="hTxt3">
+					<h1>Ist mein Nachbar ein Student?</h1>
+					<h2>Studenten pro hundert Einwohner (2000 – 2010)</h2>
+					<p>Statistisch gesehen ist Ihr Nachbar kein Student. Denn von 100 Einwohnern in Sachsen, Sachsen-Anhalt und in Thüringen waren zwischen 2000 und 2010 nicht mal drei Personen Studenten. Im 
+						<span class="text-mit-tt" id="ttStudentendichteDeutschland" title="In Deutschland stieg in den Jahren 2000 bis 2010 die Studentendichte von 2,2 Prozent auf 2,7 Prozent.">Bundesdurchschnitt</span> ergibt sich ein ähnliches Bild: Auch hier sind nur 2,7 Prozent der Bürger Studenten.</p>
+					<p>Vor wenigen Jahren sah das Bild schlechter aus: Im Jahr 2000 lag die Studentendichte in der MDR-Region bei weniger als zwei Prozent. Bis zum Jahr 2005 stieg hier der Anteil der Studenten an der Gesamtbevölkerung deutlich, seit 2005 jedoch nur noch leicht.</p>
+					<p>Im Ländervergleich hatte Sachsen 2010 mit 2,6 Prozent den größten Anteil der Studenten in der MDR-Region, in Thüringen waren zum selben Zeitpunkt 2,4 Prozent der Bevölkerung Studenten, gefolgt von Sachsen-Anhalt mit 2,3 Prozent.</p>
+				</div>
+
+				<div id="hTxt4">
+					<h1>Wie viele Einwohner absolvieren gerade?</h1>
+					<h2>Absolventen pro hundert Einwohner (2000 – 2010)</h2>
+					<p>In den Jahren 2000 bis 2010 stieg in Sachsen, Sachsen-Anhalt und in Thüringen der Anteil der Absolventen kontinuierlich. Besonders Thüringen hebt sich dabei ab: Der Freistaat konnte seinen Anteil der Absolventen an der Bevölkerung mehr als verdreifachen, von 0,14 Prozent (2000) auf 0,45 Prozent (2010). Damit liegt Thüringen über dem 
+						<span class="text-mit-tt" id="ttAbsolventenDeutschland" title="In Deutschland stieg in den Jahren 2000 bis 2010 der Anteil der Absolventen von 0,26 Prozent auf 0,44 Prozent.">Bundesdurchschnitt</span>: Im ganzen Land schließt pro Jahr nicht mal einer von einhundert Einwohnern gerade ein Studium ab.</p>
+				</div>
+
+				<div id="hTxt5">
+					<h1>Wie viel investiert der Staat in kluge Köpfe?</h1>
+					<h2>Grundmittel (2000 – 2010)</h2>
+					<p>Hinter jedem klugen Kopf steckt eine Menge Geld. Sachsen, Sachsen-Anhalt und Thüringen investierten in den Jahren 2000 bis 2010 immer mehr 
+						<span class="text-mit-tt" id="ttGrundmittel1" title="Grundmittel dienen der Grundfinanzierung. Wie viel Geld davon in den Bereich Forschung und Lehre fließt, ist nach Angaben der Hochschulrektorenkonferenz (HRK) nicht eindeutig. Dennoch geht sie davon aus, dass 40 Prozent der Grundmittel in Forschung und Lehre fließen.">Grundmittel</span> in die Hochschulen. Allen voran: Sachsen. Der Freistaat hatte aber auch die meisten Studenten und damit den höchsten Bedarf.</p>
+					<p>Sachsen-Anhalt investierte im Vergleich zu Thüringen trotz gleicher Anzahl an Studenten mehr Grundmittel. Folglich hatte Sachsen-Anhalt höhere Ausgaben pro Student (siehe Grundmittel pro Student) als Sachsen und Thüringen.</p>
+				</div>
+
+				<div id="hTxt6">
+					<h1>Wer zahlt außer dem Staat für kluge Köpfe?</h1>
+					<h2>Drittmittel (2000 – 2010)</h2>
+					<p>Gäbe es nur die staatliche Finanzierung 
+						<span class="text-mit-tt" id="ttGrundmittel2" title="Grundmittel dienen der Grundfinanzierung. Wie viel Geld davon in den Bereich Forschung und Lehre fließt, ist zwar nach Angaben der Hochschulrektorenkonferenz (HRK) nicht eindeutig zuzuordnen. Dennoch geht die HRK unter Zuhilfenahme verschiedene Parameter davon aus, dass 40 Prozent der Grundmittel in Forschung und Lehre fließen.">(Grundmittel)</span>, dann wäre die Hochschullandschaft um einiges ärmer. Finanzielle Zuwendungen Dritter 
+						<span class="text-mit-tt" id="ttDrittmittel" title="Drittmittel sind die Teile der Hochschulfinanzierung, die nicht aus dem Etat des Staates stammen. Drittmittel können sowohl aus der Privatwirtschaft als auch aus öffentlichen Töpfen für Forschung und Lehre kommen.">(Drittmittel)</span> machen einen beträchtlichen Anteil des Hochschuletats aus.</p>
+					<p>Die sächsischen Hochschulen haben in der MDR-Region den meisten Erfolg beim Einwerben von Drittmitteln – und liegen dabei sogar über dem Bundesdurchschnitt. Die Höhe der Drittmittel gilt aus Sicht einiger Bildungspolitiker als ein Indikator für die Innovationskraft eines Landes.</p>
+				</div>
+
+				<div id="hTxt7">
+					<h1>Wie viel zahlt der Staat pro klugem Kopf?</h1>
+					<h2>Grundmittel pro Student (2000 – 2010)</h2>
+					<p>Bis zum Jahr 2004 ging es bei den staatlichen Ausgaben pro Student bergab. Seit 2004 stiegen die Ausgaben für die Grundmittel wieder leicht an. Sachsen-Anhalt investierte pro Student und pro Jahr rund 3.000 Euro mehr als Thüringen und Sachsen, die bis 2010 in etwa gleichauf lagen. Das Niveau von 2000 wurde aber bis 2010 nicht mehr erreicht.</p>
+					<p>Übrigens: Auch gemessen an der Wirtschaftskraft steckte Sachsen-Anhalt den größten Anteil in die Hochschulen des Landes: 2010 gingen 1,95 Prozent des 
+						<span class="text-mit-tt" id="ttBIP1" title="Das Bruttoinlandsprodukt gibt den Gesamtwert aller Güter (Waren und Dienstleistungen) an, die innerhalb eines Jahres innerhalb eines Landes hergestellt wurden.">Bruttoinlandproduktes (BIP)</span> an die Hochschulen in Sachsen-Anhalt. In Sachsen waren es im selben Jahr 1,85 Prozent des BIP und in Thüringen 1,71 Prozent.</p>
+				</div>
+
+				<div id="hTxt8">
+					<h1>Und wie viel zahlen Dritte pro klugem Kopf?</h1>
+					<h2>Drittmittel pro Student (2000 – 2010)</h2>
+					<p>Vom Drittmitteleinwerben verstehen die sächsischen Hochschulen viel: Seit 2005 stiegen die Zahlen deutlich. </p>
+					<p>Addiert man die Grundmittel pro Student und die Drittmittel pro Student ergibt sich zum Beispiel für das Jahr 2010 folgendes Ranking: In Sachsen stehen pro Student 20.910 Euro zur Verfügung und in Sachsen-Anhalt 20.492 Euro. Nur Thüringen ist mit 18.534 Euro leicht abgeschlagen auf dem dritten Platz.</p>
+					<p>Dies bedeutet: Sachsen-Anhalt gibt zwar im Vergleich mehr pro klugem Kopf aus, aber die Hochschulen in Thüringen und Sachsen machen dieses Defizit durch eingeworbene Drittmittel wieder wett.</p>
+				</div>
+			</div>
+
 		</div>
 
 		<div id="hMap" style="position:absolute; left:10px; top:20px;">
 		</div>
 
-		<div id="hLegend" style="position:absolute; top:355px; left:40px; width:420px; height:20px;" ></div>
+		<div id="hLegend" style="position:absolute; top:355px; left:40px; width:420px; height:20px;" class="diagrammhinweis">
+			Für Details und den Bundesdurchschnitt fahren Sie mit der Maus über die Graphen.
+		</div>
 
 		<form id="hValue">
 			<div style="position:absolute; top:390px; left:35px;">
 				<div>
-					<input type="radio" value="ausg/stud/€" id="hVal1" name="hValue" checked="checked" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal1" title="Grundmittel in Euro pro Studierender">Grundmittel/Studierende</label>
+					<input type="radio" value="stud/1/" id="hVal1" name="hValue" checked="checked" />
+					<label style="display:block; width:190px; margin-bottom:6px;" for="hVal1" title="Wie viele Studenten gibt es?">Studenten</label>
 				</div>
 				<div>
-					<input type="radio" value="dritt/stud/€" id="hVal3" name="hValue" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal3" title="Drittmittel in Euro pro Studierender">Drittmittel/Studierende</label>
+					<input type="radio" value="stud/einwohner/%" id="hVal3" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:6px;" for="hVal3" title="Wie viele Studenten pro Einwohner gibt es?">Studenten pro Einwohner</label>
 				</div>
 				<div>
-					<input type="radio" value="stud/ew/%" id="hVal5" name="hValue" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal5" title="Studierende pro Einwohner">Studierende/Einwohner</label>
+					<input type="radio" value="ausg/1/€" id="hVal5" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:6px;" for="hVal5" title="Wie viel zahlt der Staat an die Hochschulen?">Grundmittel</label>
 				</div>
 				<div>
-					<input type="radio" value="ausg/1/€" id="hVal7" name="hValue" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal7" title="Grundmittel in Euro">Grundmittel</label>
+					<input type="radio" value="ausg/stud/€" id="hVal7" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:0px;" for="hVal7" title="Wie viel zahlt der Staat pro Student?">Grundmittel pro Student</label>
 				</div>
-				<div>
-					<input type="radio" value="stud/1/" id="hVal9" name="hValue" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal9" title="Anzahl Studierende">Studierende</label>
-				</div>
+<!--				<div>
+					<input type="radio" value="ausg/bip/%" id="hVal9" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal9" title="Wie viel Wirtschaftskraft fließt in die Hochschulen?">Grundmittel und BIP</label>
+				</div> -->
 
 			</div>
 			<div style="position:absolute; top:390px; left:250px;">
 				<div>
-					<input type="radio" value="ausg/bip/%" id="hVal2" name="hValue" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal2" title="Grundmittel für Studierende als Anteil am Bruttoinlandsprodukt">Grundmittel/BiP</label>
+					<input type="radio" value="absolv/1/" id="hVal2" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:6px;" for="hVal2" title="Wie viele Absolventen gibt es?">Absolventen</label>
 				</div>
 				<div>
-					<input type="radio" value="dritt/bip/%" id="hVal4" name="hValue" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal4" title="Drittmittel als Anteil am Bruttoinlandsprodukt">Drittmittel/BiP</label>
+					<input type="radio" value="absolv/einwohner/%" id="hVal4" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:6px;" for="hVal4" title="Wie viele Absolventen pro Einwohner gibt es?">Absolventen pro Einwohner</label>
 				</div>
 				<div>
-					<input type="radio" value="absolv/ew/%" id="hVal6" name="hValue" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal6" title="Absolventen pro Einwohner">Absolventen/Einwohner</label>
+					<input type="radio" value="dritt/1/€" id="hVal6" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:6px;" for="hVal6" title="Wie viel zahlen Dritte an die Hochschulen?">Drittmittel</label>
 				</div>
 				<div>
-					<input type="radio" value="dritt/1/€" id="hVal8" name="hValue" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal8" title="Drittmittel in Euro">Drittmittel</label>
+					<input type="radio" value="dritt/stud/€" id="hVal8" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:0px;" for="hVal8" title="Wie viel zahlen Dritte pro Student?">Drittmittel pro Student</label>
 				</div>
-				<div>
-					<input type="radio" value="absolv/1/" id="hVal10" name="hValue" />
-					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal10" title="Anzahl Absolventen">Absolventen</label>
-				</div>
+<!--				<div>
+					<input type="radio" value="dritt/bip/%" id="hVal10" name="hValue" />
+					<label style="display:block; width:190px; margin-bottom:1px;" for="hVal10" title="Welchen Anteil haben die Drittmittel an der Wirtschaftskraft?">Drittmittel und BIP</label>
+				</div> -->
 
 			</div>
 		</form>
 
 		<!-- Legende -->
-		<div style="width:190px; height:70px; position:absolute; left:490px; top:485px;">
-			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#219511; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Sachsen</p>
-			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#B38910; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Sachsen-Anhalt</p>
-			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#A10F0B; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Thüringen</p>
-<!--			<p style="padding:0; margin:0;        "><span style="width:13px; height:13px; display:inline-block; background-color:#000000; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> MDR-Region</p> -->
+		<div class="box-legende-diagramme">
+			<ul class="legende-diagramme">
+				<li><span class="legende-box sachsen"></span> Sachsen</li>
+				<li><span class="legende-box sachsen-anhalt"></span> Sachsen-Anhalt</li>
+				<li><span class="legende-box thueringen"></span> Thüringen</li>
+			</ul>
+		</div>
+
+		<div class="quellen">
+			<h1>Quellen</h1>
+			<p>Quelle: Statistische Ämter des Bundes und der Länder Sachsen, Sachsen-Anhalt und Thüringen</p>
+			<p>Umsetzung: OpenDataCity/MITTELDEUTSCHER RUNDFUNK</p>
 		</div>
 	</div><!-- hochschulen -->
 
 
-	<div id="wanderung" class="tab">
-		<div style="position:absolute; top:20px; left:410px; width:300px; height:400px;">
-			<h1>Wanderung</h1>
-			<h2>Umzüge der Absolventen</h2>
-			<p>Die Farben der Karte zeigen, in welche Länder die meisten Hochschul-Absolventen aus der MDR-Region gewandert sind. Ein dunkleres Blau bedeutet mehr Absolventen pro Einwohner des jeweiligen Landes.</p>
-			<p>Die Zahlen sind eine grobe Hochrechnung auf Basis der Analyse von Sozialen Netzwerken und Daten des Statistischen Bundesamtes. Sie zeigen die Verteilung und Wanderungsbewegung aller Akademiker in Deutschland.</p>
-			<p>Fahren Sie mit der Maus über die Länder, um die absoluten Zahlen zu erfahren.</p>
-		</div>
-		<div id="wMap" style="position:absolute;left:10px;top:30px;"></div>
 
-	</div><!-- wanderung -->
-
-
-	<div id="finanzen" class="tab">
+	<div id="arbeitsmarkt" class="tab">
+		<!-- left:490px; width:220px; -->
 		<div style="position:absolute; top:20px; left:490px; width:220px; height:500px;">
-			<h1>Finanzen</h1>
-			<h2>Kennzahlen von 2000-2010</h2>
-			<p>Die Quote der Arbeitslosen sinkt in der gesamten MDR-Region seit 2005.</p>
-			<p>Klicken Sie unten auf die verschiedenen Quotienten und fahren mit der Maus über die Kurven, um die genauen Größen zu erfahren.</p>
+			<div id="fTxtAll">
+				<div id="fTxt1">
+					<h1>Wie viele abhängig Beschäftigte gibt es?</h1>
+					<h2>Abhängig Beschäftigte (2000 – 2010)</h2>
+					<p>Mit der deutschen Einheit ging ein drastischer Jobverlust in den neuen Bundesländern einher. Ganze Industriezweige machten dicht, Hunderttausende Stellen gingen auch in Sachsen, Sachen-Anhalt und Thüringen verloren.</p>
+					<p>2005 allerdings stoppte die Talfahrt; wurde das Niveau gehalten. Und auch wenn es nur eine leichte Tendenz nach oben gibt: In den darauffolgenden Jahren wurden sogar wieder neue Jobs geschaffen.</p>
+				</div>
+	
+				<div id="fTxt7">
+					<h1>Welchen Anteil an der Wirtschaftskraft leistet ein Erwerbstätiger?</h1>
+					<h2>BIP pro Erwerbstätiger (2000 – 2010)</h2>
+					<p>Auch mehr als 20 Jahre nach der Wiedervereinigung ist und bleibt es die Gretchenfrage: Kann der Osten das Niveau des Westen erreichen?</p>
+					<p>Ein Blick auf das 
+						<span class="text-mit-tt" id="ttBIP2" title="Das Bruttoinlandsprodukt gibt den Gesamtwert aller Güter, Waren und Dienstleistungen an, die innerhalb eines Jahres innerhalb eines Landes hergestellt wurden.">Bruttoinlandsprodukt (BIP)</span> legt ein Nein nahe. Zwar stieg die Wirtschaftskraft pro Erwerbstätiger (einzige Ausnahme das Finanzkrisenjahr 2009). Doch am Unterschied zwischen dem bundesweiten Durchschnitt und den Ländern im MDR-Sendegebiet änderte sich seit dem Jahr 2000 nichts.</p>
+					<p>Beim BIP pro Erwerbstätiger hatte Sachsen-Anhalt bis 2010 übrigens in der MDR-Region die Nase vorn. Dort fiel der Gesamtwert aller Güter, Waren und Dienstleistungen, die innerhalb eines Jahres hergestellt wurden, pro Erwerbstätiger mindestens 2.000 Euro höher aus als in Sachsen und Thüringen.</p>
+				</div>
+	
+				<div id="fTxt5">
+					<h1>Akademiker gesucht?</h1>
+					<h2>Offene Stellen für Akademiker (2000 – 2010)</h2>
+					<p>Ob im gesamten Bundesgebiet oder in der MDR-Region, überall gab es offene Stellen für Akademiker. Der häufig beklagte Fachkräftemangel in Deutschland spiegelt sich darin wider. </p>
+					<p>Auffällig ist, dass sich die Anzahl der offenen Akademiker-Stellen in Sachsen, Sachsen-Anhalt und Thüringen zwischen 2001 und 2004 mehr als halbiert hat. Dieser Abwärtstrend lässt sich deutschlandweit ablesen, wenn auch nicht ganz so stark. Ab 2005 erholte sich der Arbeitsmarkt für Akademiker leicht, jedoch auf einem deutlich niedrigeren Niveau.</p>
+				</div>
+	
+				<div id="fTxt2">
+					<h1>Wie viele Menschen sind ohne Arbeit?</h1>
+					<h2>Arbeitslosenquote (2000 – 2010)</h2>
+					<p>Mit der Wiedervereinigung hat sich die Arbeitslosigkeit in Deutschland verschärft. In den "neuen" Bundesländern wurden Betriebe geschlossen, verschwanden die Arbeitsplätze ebenso sang- und klanglos wie viele DDR-Marken.</p>
+					<p>Erst 2006 änderte sich die Lage. Die Arbeitsagenturen verzeichneten immer weniger Arbeitslose. Während sich die Regierung für gelungene 
+						Arbeitsmarktreformen feierte, führten Kritiker die sinkende Quote unter anderem auf eine neue Zählweise zurück.</p>
+					<p>Doch auch die Finanzkrise 2008 änderte nichts am generellen Trend: In der MDR-Region sinkt die Arbeitslosenquote deutlich. 
+						Doch das liegt nicht an der Vielzahl der neu geschaffenen Stellen, sondern am fehlenden Nachwuchs, dem 
+						<span class="text-mit-tt" id="ttBevoelkerungsschwund" title="In der MDR-Region sank von 2000 bis 2010 um rund 7,9 Prozent der Bevölkerung, in Sachsen-Anhalt um rund 10,7 Prozent, in Sachsen um rund 6,2 Prozent und in Thüringen um rund 8,1 Prozent.">Bevölkerungsschwund</span>.</p>
+				</div>
+
+				<div id="fTxt8">
+					<h1>Welchen Anteil haben die Erwerbstätigen in Forschung und Entwicklung an der Gesamtzahl der Erwerbstätigen?</h1>
+					<h2>Forschung und Entwicklung (2000 – 2010)</h2>
+					<p>Anteil der Angestellten in Forschung und Entwicklung an Beschäftigten gesamt (2000 – 2010)</p>
+					<p>Neue technische Lösungen und Innovationen sind erforderlich, um die globale Wettbewerbsfähigkeit der deutschen Wirtschaft nicht nur zu erhalten, sondern weiter auszubauen.</p>
+					<p>Ein wichtiger Gradmesser dafür sind die 
+						<span class="text-mit-tt" id="ttErwerbstaetigeInFuE" title="Zu den Erwerbstätigen in Forschung und Entwicklung (FuE) gehören alle unmittelbar im Bereich Forschung und Entwicklung (FuE) beschäftigten. Forscher können im öffentlichen oder privaten Sektor arbeiten.">Erwerbstätigen in Forschung und Entwicklung</span>. Und da wird deutlich, dass die MDR-Region weit abgeschlagen ist. Auch wenn Sachsen sich deutlich von Sachen-Anhalt und Thüringen hervorhebt, gibt es im Vergleich zum Bundesdurchschnitt nur etwas mehr als halb so viele Beschäftigte in Forschung und Entwicklung. Dennoch wird ein positiver Trend deutlich, wenn auch auf niedrigem Niveau.</p>
+				</div>
+	
+				<div id="fTxt4">
+					<h1>Akademiker auf dem Vormarsch?</h1>
+					<h2>Anteil der Akademiker an allen Beschäftigten (2000 – 2010)</h2>
+					<p>Trotz Fachkräftemangel nahm der Anteil der Akademiker an den Beschäftigten innerhalb von zehn Jahren nur geringfügig zu.</p>
+					<p>Dabei stand die MDR-Region in den Jahren 2000 bis 2010 im Vergleich nicht schlechter da als die übrige Bundesrepublik. Gerade Sachsen sticht dabei hervor – der Freistaat lag konstant und bis zu vier Prozentpunkte über dem Bundesdurchschnitt.</p>
+				</div>
+			</div>
 		</div>
 
 		<div id="fMap" style="position:absolute; left:10px; top:20px;">
 		</div>
 
-		<div id="fLegend" style="position:absolute; top:355px; left:40px; width:420px; height:20px;" ></div>
+		<div id="fLegend" style="position:absolute; top:355px; left:40px; width:420px; height:20px;" class="diagrammhinweis">
+			Für Details und den Bundesdurchschnitt fahren Sie mit der Maus über die Graphen.
+		</div>
 
 		<form id="fValue">
-			<div style="position:absolute; top:400px; left:35px;">
+			<div style="position:absolute; top:390px; left:35px;">
 				<div>
-					<input type="radio" value="bip/ew/€" id="fVal1" name="fValue" checked="checked" />
-					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal1" title="Bruttoinlandsprodukt in Euro pro Einwohner">BIP/Einwohner</label>
+					<input type="radio" value="svpb/1/" id="fVal1" name="fValue" checked="checked" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal1" title="Wie viele abhängig Beschäftigte gibt es?">Abhängig Beschäftigte</label>
+				</div>
+			<!--	<div>
+					<input type="radio" value="betr/1/" id="fVal3" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal3" title="Personen in Forschung und Entwicklung pro Erwerbstätige">Kurzarbeit Betriebe</label>
+				</div> -->
+				<div>
+					<input type="radio" value="bip/ew/€" id="fVal7" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal7" title="Welche Wirtschaftskraft erwirtschaftet ein Erwerbstätiger?">BIP pro Erwerbstätiger</label>
 				</div>
 				<div>
-					<input type="radio" value="fue/ew/%" id="fVal3" name="fValue" />
-					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal3" title="Personen in Forschung und Entwicklung pro Einwohner">FuE/Einwohner</label>
-				</div>
-				<div>
-					<input type="radio" value="e400/1/" id="fVal5" name="fValue" />
-					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal5" title="Ausschließlich geringfügig entlohnte Beschäftigte (400€)">400€</label>
-				</div>
-				<div>
-					<input type="radio" value="betr/1/" id="fVal7" name="fValue" />
-					<label style="display:block; width:190px;" for="fVal7" title="Betriebe mit Kurzarbeit">Kurzarbeit Betriebe</label>
+					<input type="radio" value="akoffen/1/" id="fVal5" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal5" title="Offene Stellen Akademiker">Offene Stellen Akademiker</label>
 				</div>
 			</div>
 
-			<div style="position:absolute; top:400px; left:250px;">
+			<div style="position:absolute; top:390px; left:250px;">
 				<div>
-					<input type="radio" value="svpb/ew/%" id="fVal2" name="fValue" />
-					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal2" title="Sozialversicherungspflichtige Beschäftigte pro Einwohner">SvpB/Einwohner</label>
+					<input type="radio" value="al/ew/%" id="fVal2" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal2" title="Arbeitslosenquote">Arbeitslosenquote</label>
 				</div>
-				<div>
-					<input type="radio" value="al/ew/%" id="fVal4" name="fValue" />
-					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal4" title="Arbeitslose pro Einwohner">Arbeitslose/Einwohner</label>
-				</div>
-				<div>
+<!--				<div>
 					<input type="radio" value="e400Frau/1/" id="fVal6" name="fValue" />
 					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal6" title="Ausschließlich geringfügig entlohnt beschäftigte Frauen">400€ Frauen</label>
+				</div> -->
+				<div>
+					<input type="radio" value="fue/ew/" id="fVal8" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal8" title="Welchen Anteil haben die Erwerbstätigen in Forschung und Entwicklung an der Gesamtzahl der Erwerbstätigen?">Forschung und Entwicklung</label>
 				</div>
 				<div>
-					<input type="radio" value="kurz/1/" id="fVal8" name="fValue" />
-					<label style="display:block; width:190px;" for="fVal8" title="Kurzarbeiter">Kurzarbeiter</label>
+					<input type="radio" value="akbesetzt/1/%" id="fVal4" name="fValue" />
+					<label style="display:block; width:190px; margin-bottom:4px;" for="fVal4" title="Besetzte Stellen Akademiker (als Anteil an allen SV-Beschäftigten)">Beschäftigte Akademiker</label>
 				</div>
 			</div>
 		</form>
 
 		<!-- Legende -->
-		<div style="width:190px; height:70px; position:absolute; left:490px; top:475px;">
-			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#219511; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Sachsen</p>
-			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#B38910; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Sachsen-Anhalt</p>
-			<p style="padding:0; margin:0 0 7px 0;"><span style="width:13px; height:13px; display:inline-block; background-color:#A10F0B; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> Thüringen</p>
-			<!-- <p style="padding:0; margin:0;        "><span style="width:13px; height:13px; display:inline-block; background-color:#000000; margin:0 4px -3px 0; border:1px solid rgba(0,0,0,0.3);"></span> MDR-Region</p> -->
+		<div class="box-legende-diagramme">
+			<ul class="legende-diagramme">
+				<li><span class="legende-box sachsen"></span> Sachsen</li>
+				<li><span class="legende-box sachsen-anhalt"></span> Sachsen-Anhalt</li>
+				<li><span class="legende-box thueringen"></span> Thüringen</li>
+			</ul>
 		</div>
-	</div><!-- finanzen -->
-</div>
 
+		<div class="quellen">
+			<h1>Quellen</h1>
+			<p>Quelle: <span id="aQuelle"></span></p>
+			<p>Umsetzung: OpenDataCity/MITTELDEUTSCHER RUNDFUNK</p>
+		</div>
+	</div><!-- arbeitsmarkt -->
+
+
+	<div id="wanderung" class="tab">
+		<div style="position:absolute; top:20px; left:410px; width:300px; height:400px;">
+			<h1>Wohin gehen die klugen Köpfe?</h1>
+			<h2>Wanderungsbewegung der Absolventen</h2>
+			<p>Für die jeweilige Anzahl pro Bundesland fahren Sie mit der Maus über die Karte.</p>
+			<p>Ein Grund für den Mangel an Fachkräften könnte auch in der Wanderungsbewegung ostdeutscher Absolventen liegen.</p>
+			<p>Erstmalig wurden für Deutschland und speziell für die MDR-Region   
+				<span class="text-mit-tt" id="tt-wanderung-1" title="Die vorliegenden Daten ergaben sich aus zwei Fragestellungen an die Nutzer von sozialen Netzwerke: Wo haben Sie studiert? Wo arbeiten Sie heute? Die Zeitpunkte von Studium und Job waren für die Erhebung nicht entscheidend. Es wurden ausschließlich die Angaben eingetragener Nutzer verwendet, weshalb die erhobenen Daten nicht den Werten aller Absolventen entsprechen.) ">Daten aus sozialen Netzwerken</span> erhoben, die eine grobe Hochrechung zur Wanderungsbewegung der Absolventen zulassen. Ergebnis: Besonders Berlin, Bayern und Baden-Württemberg profitieren seit Jahren von sehr gut ausgebildeten Fachkräften der MDR-Region.</p>
+			<p>Am Beispiel des Jahrgangs 2005 lässt sich dieser Trend noch exakter belegen: Laut Hochschul-Informations-System GmbH (HIS) verließen im Saldo 36 Prozent aller Absolventen des Jahrgangs 2005 die MDR-Region. In Euro ausgedrückt, wanderten damit in Form von klugen Köpfen rund 300 Millionen Euro aus der MDR-Region ab.</p>
+			<p>Übrigens: Besonders häufig begannen die Absolventen der Fachgruppen Maschinenbau / Elektrotechnik und Wirtschaftsingenieure eine Karriere außerhalb der MDR-Region, im Saldo nahezu 60 Prozent.</p>
+		</div>
+		<div id="wMap" style="position:absolute;left:10px;top:30px;"></div>
+
+		<div class="quellen">
+			<h1>Quellen</h1>
+			<p>Quelle: Hochschul-Informations-System GmbH (HIS) und eigene Erhebungen</p>
+			<p>Umsetzung: OpenDataCity/MITTELDEUTSCHER RUNDFUNK</p>
+		</div>
+	</div><!-- wanderung  -->
+
+</div>
 
 </body>
 </html>

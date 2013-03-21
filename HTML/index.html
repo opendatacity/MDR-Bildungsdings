@@ -5,18 +5,20 @@
 		<title>MDR</title>
 		<link rel="shortcut icon" type="image/x-icon" href="http://www.mdr.de/resources/img/favicon.ico"/>
 		<style>
+			* {border: none}
 			html { background-color:#2284c8; margin:0; padding:0; }
 			body { background-color:#fafafa; margin:10px; padding:0; height:900px; width:970px; }
-			h1 { font-family:Tahoma; color:#004e9e; padding:20px;}
+			h1 { font-family: arial,sans-serif; color:#004e9e; padding:20px 0 0 190px;}
 			iframe { }
 			div#navi { float:left; height:700px; width:170px; margin:0 10px; background-color: #2284c8; }
+			#logo {position: absolute; top:40px;left:30px;}
 		</style>
 	</head>
 	<body>
-		<h1><img src="http://www.mdr.de/resources/img/mdr_logo.gif" /></h1>
+		<a href="http://www.mdr.de/"><img src="http://www.mdr.de/resources/img/mdr_logo.gif" / alt="MITTELDEUTSCHER RUNDFUNK" title="MITTELDEUTSCHER RUNDFUNK" id="logo"></a>
+		<h1>&nbsp;</h1>
 
-		<div id="navi">
-		</div>
+		<div id="navi"></div>
 
 		<!--
 			Dem iFrame können zwei Parameter per URL mitgegeben werden:
@@ -36,8 +38,10 @@
 			Der Parameter b gibt an, ob die Reiter-Tabs angezeigt werden sollen.
 			b = 0 - Reiter werden nicht angezeigt.     height = 600
 			b = 1 - Reiter werden angezeigt. (default) height = 620
+
+			frame.html#schueler-1
 		-->
 
-		<iframe src="frame.html#schueler-1" width="768" height="620" border="0" frameborder="0"></iframe>
+		<iframe src="check.html" width="768" height="620" border="0" frameborder="0"></iframe>
 	</body>
 </html>
