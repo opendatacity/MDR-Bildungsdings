@@ -81,7 +81,7 @@ p a:hover, p a:active, p a:focus {
 	background-image: none;
 }
 
-#sMap, #aMap, #wMap {
+#sMap, #aMap, #wMap, #tMap {
 	background: url('shadow.png') no-repeat -2px 12px;
 }
 
